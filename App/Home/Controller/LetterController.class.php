@@ -28,8 +28,9 @@ class LetterController extends BaseController
     {
         try{
             // TODO change
-            if( IS_POST && IS_AJAX ){
-                $letter_id          =   I('post.id', '', 'int');
+            if( !IS_POST || IS_AJAX ){
+                $letter_id          =   I('get.id', '', 'int');
+                $letter_id || E('参数缺失');
                 $letterModel        =   new LetterModel();
                 $letterModel->where(['id'=>['eq',$letter_id], 'student_id'=>['eq',session('_student.id')]])->save(['status'=>1])===false
                 &&  E($letterModel->getDbError());
