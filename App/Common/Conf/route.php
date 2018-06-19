@@ -24,6 +24,7 @@ return [
         /* student */
         'api/login'                 =>  'Home/Auth/login',
         'api/logout'                =>  'Home/Auth/logout',
+        'api/profile'               =>  'Home/Student/profile',
         'api/student/info'          =>  'Home/Student/index',
         'api/profile/setting'       =>  'Home/Student/setting',
 

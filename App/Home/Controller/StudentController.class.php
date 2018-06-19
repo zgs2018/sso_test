@@ -52,6 +52,17 @@ class StudentController extends BaseController
         ] );
     }
 
+    public function profile ()
+    {
+        $model          =   new StudentModel();
+
+        $info           =   $model->field('mobile,password',true)->relation('profile')->find(session('_student.id'));
+
+        $this->ajaxReturn([
+            'result'    =>  true,
+            'info'      =>  $info
+        ]);
+    }
 
     public function setting ()
     {
@@ -60,7 +71,7 @@ class StudentController extends BaseController
                 $params             =   I('get.');
                 $profileModel       =   new ProfileModel();
                 C('TOKEN_ON',false);
-                if( $data=$profileModel->field('nickname,address,bind_mobile')->create($params,1) ){
+                if( $data=$profileModel->field('nickname,address,bind_mobile,sex')->create($params,1) ){
                     // 开启事务
                     $profileModel->startTrans();
                     $this->uploadHeadpic($data,'headpic');
