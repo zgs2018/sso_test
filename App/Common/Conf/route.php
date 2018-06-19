@@ -21,7 +21,9 @@ return [
         '/'             =>  'Home/Index/index',
         'test'          =>  'Home/Index/test',
 
-        // Course
-        'course'        =>  'Course/Index/index',
+        /* student */
+        'api/login'            =>  'Home/Auth/login',
+        'api/logout'           =>  'Home/Auth/logout',
+        'api/student/info'     =>  'Home/Student/index',
     ],
 ];

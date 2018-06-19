@@ -1,8 +1,8 @@
 <?php
 namespace Home\Controller;
-
-use Course\Model\CourseModel;
+use Common\Controller\BaseController;
 use Think\Controller;
+use Think\Controller\RpcController;
 
 class IndexController extends Controller
 {
@@ -11,15 +11,15 @@ class IndexController extends Controller
         $this->display();
     }
 
-    public function test()
+    public function test ()
     {
-        $result     =   [
-            'name'      =>  'Luke',
-            'age'       =>  18,
-            'sex'       =>  'male',
-        ];
+        $ip     =   get_client_ip();
 
-        $this->display();
-        $this->ajaxReturn( $result, 'xml' );
+        $ipObj = new \Org\Net\IpLocation('UTFWry.dat'); // 实例化类 参数表示IP地址库文件
+        $area = $ipObj->getlocation('101.132.107.193'); // 获取某个IP地址所在的位置
+
+        dump($area);
+
     }
+
 }

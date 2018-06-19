@@ -54,6 +54,7 @@ abstract class Controller {
      */
     protected function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
         $this->view->display($templateFile,$charset,$contentType,$content,$prefix);
+        return ;
     }
 
     /**
@@ -301,6 +302,28 @@ abstract class Controller {
     public function __destruct() {
         // 执行后续操作
         Hook::listen('action_end');
+    }
+
+    /**
+     * @param $data
+     * @param null $url
+     * @param int $seconds
+     */
+    public function response ($data,$url=null,$seconds=3)
+    {
+        // TODO params[ result, msg, url, seconds,  ]
+        // jsonp
+        IS_JSONP && $this->ajaxReturn( $data, 'JSONP' );
+        // ajax
+        IS_AJAX && $this->ajaxReturn( $data );
+        //
+        $msg                =   is_array( $data ) ? $data['msg'] : $data;
+        $action             =   array_key_exists( 'result', $data )
+            ?   ($data['result'] ? 'success' : 'error')
+            :   'success';
+        $url                =   !is_null( $url ) ? $url : $_SERVER['HTTP_REFERER'];
+        $this->{$action}( $msg, $url, $seconds );
+        exit ;
     }
 }
 // 设置控制器别名 便于升级
