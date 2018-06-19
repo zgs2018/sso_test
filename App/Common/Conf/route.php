@@ -22,17 +22,15 @@ return [
         'test'                      =>  'Home/Index/test',
 
         /* student */
-        'api/login'                 =>  'Home/Auth/login',
-        'api/logout'                =>  'Home/Auth/logout',
-        'api/profile'               =>  'Home/Student/profile',
-        'api/upload/headpic'        =>  'Home/Student/uploadHeadpic',
-        'api/student/info'          =>  'Home/Student/index',
-        'api/profile/setting'       =>  'Home/Student/setting',
+        'api/login'                 =>  'Home/Auth/login',  // 登陆
+        'api/logout'                =>  'Home/Auth/logout', // 登出
+        'api/profile'               =>  'Home/Student/profile', // 学员信息
+        'api/upload/headpic'        =>  'Home/Student/uploadHeadpic', // 上传头像
+        'api/student/info'          =>  'Home/Student/index', // 初始化主页数据
+        'api/profile/setting'       =>  'Home/Student/setting', // 个人信息修改
 
         /* letter */
-        // 获取信件列表
-        'api/letter/list'           =>  'Home/Letter/index',
-        // 信件标记已读
-        'api/letter/read'           =>  'Home/Letter/read',
+        'api/letter/list'           =>  'Home/Letter/index',// 获取信件列表
+        'api/letter/read'           =>  'Home/Letter/read',// 信件标记已读
     ],
 ];
