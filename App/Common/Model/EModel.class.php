@@ -11,11 +11,9 @@ abstract class EModel extends RelationModel
     protected $tablePrefix          =   null;
 
     protected $_scope               =   [
-
+        'valid'         =>  [
+            'where'         =>  ['status'=>1],
+        ],
     ];
 
-    protected function _initialize()
-    {
-        $this->currentStudent       =   session('_student');
-    }
 }

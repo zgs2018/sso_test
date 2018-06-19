@@ -18,12 +18,13 @@ return [
 
 
     'URL_MAP_RULES'         =>  [
-        '/'             =>  'Home/Index/index',
-        'test'          =>  'Home/Index/test',
+        '/'                         =>  'Home/Index/index',
+        'test'                      =>  'Home/Index/test',
 
         /* student */
-        'api/login'            =>  'Home/Auth/login',
-        'api/logout'           =>  'Home/Auth/logout',
-        'api/student/info'      =>  'Home/Student/index',
+        'api/login'                 =>  'Home/Auth/login',
+        'api/logout'                =>  'Home/Auth/logout',
+        'api/student/info'          =>  'Home/Student/index',
+        'api/student/letter'        =>  'Home/Student/letter',
     ],
 ];

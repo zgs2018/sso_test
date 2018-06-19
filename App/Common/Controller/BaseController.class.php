@@ -22,6 +22,7 @@ class BaseController extends Controller
         }catch (Exception $e){
             $result         =   [
                 'result'        =>  false,
+                'code'          =>  403,
                 'msg'           =>  $e->getMessage(),
             ];
             $e->getCode()==203 && ($result['url']=U('/'));

@@ -8,7 +8,7 @@ return [
     'DB_USER'         => env('DB_USER',''),      // 用户名
     'DB_PWD'          => env('DB_PASS',''),          // 密码
     'DB_PORT'         => env('DB_PORT',''),        // 端口
-    'DB_PREFIX'       => env('DB_PREFIX',3306),    // 数据库表前缀
+    'DB_PREFIX'       => env('DB_PREFIX',''),    // 数据库表前缀
 
     'DB_PARAMS'          	=>  array(), // 数据库连接参数
     'DB_DEBUG'  			=>  env('DB_DEBUG',false), // 数据库调试模式 开启后可以记录SQL日志

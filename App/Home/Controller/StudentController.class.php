@@ -3,6 +3,7 @@ namespace Home\Controller;
 
 use Common\Controller\BaseController;
 use Home\Model\CourseMdoel;
+use Home\Model\LetterModel;
 use Home\Model\PeriodModel;
 use Home\Model\StudentModel;
 
@@ -17,6 +18,7 @@ class StudentController extends BaseController
         $product        =   [];
         $studentModel           =   new StudentModel();
         $periodModel            =   new PeriodModel();
+        $letterModel            =   new LetterModel();
         $scheduleData           =   $studentModel->studentSchedule($s_id);
         $now                    =   time();
         foreach ($scheduleData as $key => $value){
@@ -33,20 +35,35 @@ class StudentController extends BaseController
         },$period );
         // 排课
 
+        // 学生信息
+        $studentInfo            =   $studentModel->field('password,remark',true)->relation('profile')->find($s_id);
+        // 未读信息数量
+        $letterUnreadCount      =   $letterModel->unreadCount(['student_id'=>['eq',$s_id]]);
+
+
         $this->ajaxReturn( [
-            'result'    =>  true,
-            'schedule'  =>  $schedule,
-            'period'    =>  $period,
+            'result'                    =>  true,
+            'schedule'                  =>  $schedule,
+            'period'                    =>  $period,
+            'letterUnreadCount'         =>  $letterUnreadCount,
+            'info'                      =>  $studentInfo,
         ] );
     }
 
-    public function info ()
+    public function letter ()
     {
-        $studentModel           =   new StudentModel();
+        $letterModel            =   new LetterModel();
 
-        $result                 =   $studentModel->alias('s')->relation('letters')
-            ->where(['s.id'=>['eq',session('_student.id')]])->select();
+        $result                 =   $letterModel->where(['student_id'=>['eq',session('_student.id')]])
+            ->order('status asc,create_at desc')
+            ->select();
 
-        dump($result);
+
+        $this->ajaxReturn( [
+            'result'            =>  true,
+            'lists'             =>  $result,
+            'desc'              =>  'status:信件状态 0.未读 1.已读 2.标记; from_type:来源类型 1.教师 2.学员 3.系统通知',
+            '_sql'              =>  $letterModel->_sql(),
+        ] );
     }
 }

@@ -58,9 +58,9 @@ class AuthController extends Controller
     {
         $result = [
             'result'    =>  false,
-            'msg'       =>  '你已经登陆',
+            'msg'       =>  '你还没有登录',
         ];
-        $this->isLoginYet() && $this->response( $result, '/' );
+        $this->isLoginYet() || $this->response( $result, '/' );
 
         session(null);
         $result         =   [
