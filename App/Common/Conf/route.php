@@ -25,6 +25,7 @@ return [
         'api/login'                 =>  'Home/Auth/login',
         'api/logout'                =>  'Home/Auth/logout',
         'api/profile'               =>  'Home/Student/profile',
+        'api/upload/headpic'        =>  'Home/Student/uploadHeadpic',
         'api/student/info'          =>  'Home/Student/index',
         'api/profile/setting'       =>  'Home/Student/setting',
 

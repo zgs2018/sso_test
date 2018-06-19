@@ -74,10 +74,8 @@ class StudentController extends BaseController
                 if( $data=$profileModel->field('nickname,address,bind_mobile,sex')->create($params,1) ){
                     // 开启事务
                     $profileModel->startTrans();
-                    $this->uploadHeadpic($data,'headpic');
                     $data['student_id']     =   (int)session('_student.id');
                     $profileModel->add($data,[],true)===false && E($profileModel->getError());
-
                     // 提交
                     $profileModel->commit();
                     $this->ajaxReturn(['result'=>true]);
@@ -94,14 +92,25 @@ class StudentController extends BaseController
         }
     }
 
-    protected function uploadHeadpic (&$data,$fileKey)
+    public function uploadHeadpic ($fileKey='headpic')
     {
-        if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
-            $info=$this->uploadOne( $fileKey );
-            $info===false && E($this->error);
-            $data['headpic']        =   $info['savepath'].$info['savename'];
-            return ;
+        try{
+            if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
+                $info=$this->uploadOne( $fileKey );
+                $info===false && E($this->error);
+                $data['headpic']        =   $info['savepath'].$info['savename'];
+                $data['student_id']     =   (int)session('_student.id');
+                $model                  =   new ProfileModel();
+                $model->add($data,[],true)===false&&E($model->getDbError());
+
+                $this->ajaxReturn( ['result'=>true] );
+            }
+            E('图片信息有误');
+        }catch (Exception $e){
+            $this->ajaxReturn([
+                'result'        =>  false,
+                'error'         =>  $e->getMessage(),
+            ]);
         }
-        return ;
     }
 }
