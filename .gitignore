@@ -1,0 +1,5 @@
+.env
+.idea/
+App/Runtime/*
+!App/Runtime/index.html
+_M/*
