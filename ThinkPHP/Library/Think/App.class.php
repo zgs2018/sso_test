@@ -20,9 +20,6 @@ class App {
      * @return void
      */
     static public function init() {
-        // 加载动态应用公共文件和配置
-        load_ext_file(COMMON_PATH);
-
         // 日志目录转换为绝对路径 默认情况下存储到公共模块下面
         C('LOG_PATH',   realpath(LOG_PATH).'/Common/');
 
@@ -33,6 +30,9 @@ class App {
         define('IS_POST',       REQUEST_METHOD =='POST' ? true : false);
         define('IS_PUT',        REQUEST_METHOD =='PUT' ? true : false);
         define('IS_DELETE',     REQUEST_METHOD =='DELETE' ? true : false);
+
+        // 加载动态应用公共文件和配置
+        load_ext_file(COMMON_PATH);
 
         // URL调度
         Dispatcher::dispatch();

@@ -25,8 +25,8 @@ class AuthController extends Controller
     public function login ()
     {
         try{
-            if( !IS_POST || IS_AJAX ){
-                $params         =   I('get.');
+            if( IS_POST || IS_AJAX ){
+                $params         =   I('post.');
                 // 参数检验
                 $this->checkLoginParams( $params ) || E('用户名或密码不合法!',203);
                 // 证书验证

@@ -40,4 +40,13 @@ class StudentController extends BaseController
         ] );
     }
 
+    public function info ()
+    {
+        $studentModel           =   new StudentModel();
+
+        $result                 =   $studentModel->alias('s')->relation('letters')
+            ->where(['s.id'=>['eq',session('_student.id')]])->select();
+
+        dump($result);
+    }
 }

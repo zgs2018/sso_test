@@ -7,10 +7,20 @@ class StudentModel extends EModel
 {
     protected $tableName            =   'students';
 
+    protected $_link                =   [
+        'letters'        =>  [
+            'mapping_order'     =>  'create_at desc',
+            'mapping_type'      =>  'HAS_MANAY',
+            'class_name'        =>  'Letter',
+            'foreign_key'       =>  'student_id',
+        ],
+    ];
+
     public function getStudentProduct ()
     {
 
     }
+
     public function studentSchedule ($studentId)
     {
         // TODO student -> period_student -> [ course_period, course_schedule ] -> [ course, course_section ]
