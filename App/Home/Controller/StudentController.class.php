@@ -5,7 +5,9 @@ use Common\Controller\BaseController;
 use Home\Model\CourseMdoel;
 use Home\Model\LetterModel;
 use Home\Model\PeriodModel;
+use Home\Model\ProfileModel;
 use Home\Model\StudentModel;
+use Think\Exception;
 
 class StudentController extends BaseController
 {
@@ -51,4 +53,44 @@ class StudentController extends BaseController
     }
 
 
+    public function setting ()
+    {
+        try{
+            if( !IS_POST || IS_AJAX ){
+                $params             =   I('get.');
+                $profileModel       =   new ProfileModel();
+                C('TOKEN_ON',false);
+                if( $data=$profileModel->field('nickname,address,bind_mobile')->create($params,1) ){
+                    // 开启事务
+                    $profileModel->startTrans();
+                    $this->uploadHeadpic($data,'headpic');
+                    $data['student_id']     =   (int)session('_student.id');
+                    $profileModel->add($data,[],true)===false && E($profileModel->getError());
+
+                    // 提交
+                    $profileModel->commit();
+                    $this->ajaxReturn(['result'=>true]);
+                }
+                E( $profileModel->getError() );
+            }
+            E('非法请求');
+        }catch (Exception $e){
+            $profileModel->rollback();
+            $this->ajaxReturn( [
+                'result'            =>  false,
+                'error'             =>  $e->getMessage()
+            ] );
+        }
+    }
+
+    protected function uploadHeadpic (&$data,$fileKey)
+    {
+        if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
+            $info=$this->uploadOne( $fileKey );
+            $info===false && E($this->error);
+            $data['headpic']        =   $info['savepath'].$info['savename'];
+            return ;
+        }
+        return ;
+    }
 }

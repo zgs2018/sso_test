@@ -4,6 +4,7 @@ namespace Common\Controller;
 
 use Think\Controller;
 use Think\Exception;
+use Think\Upload;
 
 class BaseController extends Controller
 {
@@ -58,6 +59,22 @@ class BaseController extends Controller
         header('Access-Control-Allow-Headers:x-requested-with');
         header("Access-Control-Allow-Credentials: true");
         return;
+    }
+
+    protected function uploadOne($fileKey,$path='')
+    {
+        $upload                 =   new Upload();
+        $upload->maxSize        =   3145728 ;// 设置附件上传大小
+        $upload->exts           =   array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+        $upload->rootPath       =   './Upload'; // 设置附件上传根目录
+        $upload->savePath       =   $path; // 设置附件上传（子）目录
+        $upload->autoSub        =   true;
+        $upload->subName        =   ['date','Y-m-d'];
+        if( $info=$upload->uploadOne($_FILES[$fileKey]) ){
+            return $info;
+        }
+        $this->error            =   $upload->getError();
+        return false;
     }
 
 }

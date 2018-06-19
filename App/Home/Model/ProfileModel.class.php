@@ -6,4 +6,5 @@ use Common\Model\EModel;
 class ProfileModel  extends EModel
 {
     protected $tableName                    =   'student_profile';
+
 }

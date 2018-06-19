@@ -25,6 +25,7 @@ return [
         'api/login'                 =>  'Home/Auth/login',
         'api/logout'                =>  'Home/Auth/logout',
         'api/student/info'          =>  'Home/Student/index',
+        'api/profile/setting'       =>  'Home/Student/setting',
 
         /* letter */
         // 获取信件列表
