@@ -22,4 +22,15 @@ class IndexController extends Controller
 
     }
 
+    public function isLogin ()
+    {
+        $is_login               =   session('?_student');
+        $result                 =   [
+            'result'    =>  $is_login,
+            'code'      =>  $is_login ? 200 : 403,
+        ];
+
+        $this->ajaxReturn( $result );
+    }
+
 }

@@ -11,7 +11,7 @@ class BaseController extends Controller
     public function __construct()
     {
         parent::__construct();
-         $this->_origin();
+        IS_JSONP && $this->_origin();
         $this->checkAuth();
     }
 

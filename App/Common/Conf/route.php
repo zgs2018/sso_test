@@ -20,6 +20,7 @@ return [
     'URL_MAP_RULES'         =>  [
         '/'                         =>  'Home/Index/index',
         'test'                      =>  'Home/Index/test',
+        'api/isLogin'               =>  'Home/Index/isLogin',
 
         /* student */
         'api/login'                 =>  'Home/Auth/login',  // 登陆
