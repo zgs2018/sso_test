@@ -50,20 +50,5 @@ class StudentController extends BaseController
         ] );
     }
 
-    public function letter ()
-    {
-        $letterModel            =   new LetterModel();
 
-        $result                 =   $letterModel->where(['student_id'=>['eq',session('_student.id')]])
-            ->order('status asc,create_at desc')
-            ->select();
-
-
-        $this->ajaxReturn( [
-            'result'            =>  true,
-            'lists'             =>  $result,
-            'desc'              =>  'status:信件状态 0.未读 1.已读 2.标记; from_type:来源类型 1.教师 2.学员 3.系统通知',
-            '_sql'              =>  $letterModel->_sql(),
-        ] );
-    }
 }

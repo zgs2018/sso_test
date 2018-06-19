@@ -25,6 +25,11 @@ return [
         'api/login'                 =>  'Home/Auth/login',
         'api/logout'                =>  'Home/Auth/logout',
         'api/student/info'          =>  'Home/Student/index',
-        'api/student/letter'        =>  'Home/Student/letter',
+
+        /* letter */
+        // 获取信件列表
+        'api/letter/list'           =>  'Home/Letter/index',
+        // 信件标记已读
+        'api/letter/read'           =>  'Home/Letter/read',
     ],
 ];
