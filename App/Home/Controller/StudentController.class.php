@@ -69,13 +69,18 @@ class StudentController extends BaseController
         try{
             if( !IS_POST || IS_AJAX ){
                 $params             =   I('get.');
+                $s_id               =   (int)session('_student.id');
                 $profileModel       =   new ProfileModel();
                 C('TOKEN_ON',false);
                 if( $data=$profileModel->field('nickname,address,bind_mobile,sex')->create($params,1) ){
                     // 开启事务
                     $profileModel->startTrans();
-                    $data['student_id']     =   (int)session('_student.id');
-                    $profileModel->add($data,[],true)===false && E($profileModel->getError());
+                    $data['student_id']     =   $s_id;
+                    if( $profileModel->find($s_id) ){
+                        $profileModel->save($data)===false && E($profileModel->getError());
+                    }else{
+                        $profileModel->add($data)===false && E($profileModel->getError());
+                    }
                     // 提交
                     $profileModel->commit();
                     $this->ajaxReturn(['result'=>true]);
@@ -96,12 +101,16 @@ class StudentController extends BaseController
     {
         try{
             if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
-                $info=$this->uploadOne( $fileKey );
+                $info=$this->uploadOne( $fileKey, 'headpic/' );
                 $info===false && E($this->error);
                 $data['headpic']        =   $info['savepath'].$info['savename'];
                 $data['student_id']     =   (int)session('_student.id');
                 $model                  =   new ProfileModel();
-                $model->add($data,[],true)===false&&E($model->getDbError());
+                if( $model->find($data['student_id']) ){
+                    $model->where(['student_id'=>['eq',$data['student_id']]])->setField('headpic',$data['headpic'])===false && E($model->getError());
+                }else{
+                    $model->add($data)===false && E($model->getError());
+                }
 
                 $this->ajaxReturn( ['result'=>true] );
             }
