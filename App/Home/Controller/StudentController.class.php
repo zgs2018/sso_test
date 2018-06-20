@@ -49,6 +49,9 @@ class StudentController extends BaseController
             'period'                    =>  $period,
             'letterUnreadCount'         =>  $letterUnreadCount,
             'info'                      =>  $studentInfo,
+            'desc'                      =>  [
+                'status:本节课是否已经上过 已结束（-1） 即将开始（1），signin:是否签到 请假（-7） 未签到（0，null） 已签到（1）'
+            ],
         ] );
     }
 
