@@ -28,7 +28,7 @@ class LetterController extends BaseController
     {
         try{
             // TODO change
-            if( !IS_POST || IS_AJAX ){
+            if( IS_POST && IS_AJAX ){
                 $letter_id          =   I('get.id', '', 'int');
                 $letter_id || E('参数缺失');
                 $letterModel        =   new LetterModel();

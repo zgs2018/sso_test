@@ -67,8 +67,8 @@ class StudentController extends BaseController
     public function setting ()
     {
         try{
-            if( !IS_POST || IS_AJAX ){
-                $params             =   I('get.');
+            if( IS_POST && IS_AJAX ){
+                $params             =   I('post.');
                 $s_id               =   (int)session('_student.id');
                 $profileModel       =   new ProfileModel();
                 C('TOKEN_ON',false);
@@ -87,9 +87,9 @@ class StudentController extends BaseController
                 }
                 E( $profileModel->getError() );
             }
-            E('非法请求');
+            E('非法请求',403);
         }catch (Exception $e){
-            $profileModel->rollback();
+            $e->getCode()==403||$profileModel->rollback();
             $this->ajaxReturn( [
                 'result'            =>  false,
                 'error'             =>  $e->getMessage()
