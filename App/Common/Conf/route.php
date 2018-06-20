@@ -25,6 +25,7 @@ return [
         /* student */
         'api/login'                 =>  'Home/Auth/login',  // 登陆
         'api/logout'                =>  'Home/Auth/logout', // 登出
+        'api/reset'                 =>  'Home/Auth/reset', // 密码重置
         'api/profile'               =>  'Home/Student/profile', // 学员信息
         'api/upload/headpic'        =>  'Home/Student/uploadHeadpic', // 上传头像
         'api/student/info'          =>  'Home/Student/index', // 初始化主页数据

@@ -72,6 +72,33 @@ class AuthController extends Controller
         $this->response($result, U('Auth/login_view'));
     }
 
+    public function reset ()
+    {
+        try{
+            if( !IS_POST || IS_AJAX ){
+                $params                 =   I('get.');
+                $model                  =   new StudentModel();
+                $this->checkResetParams($params) || E('参数有误');
+                $model->student_login( session('_student.mobile'), $params['oldpasswd'] ) || E('旧密码不正确');
+                $data                   =   [
+                    'id'        =>  (int)session('_student.id'),
+                    'password'  =>  password_hash( trim($params['newpasswd']), PASSWORD_BCRYPT )
+                ];
+
+                $model->field('password')->save($data)===false && E($model->getDbError());
+
+                $this->ajaxReturn( ['result'=>true] );
+            }
+            E('非法操作');
+        }catch (Exception $e){
+            $result                 =   [
+                'result'                =>  false,
+                'error'                 =>  $e->getMessage(),
+            ];
+            $this->ajaxReturn( $result );
+        }
+    }
+
     public function isLoginYet ()
     {
         return session('?_student');
@@ -83,6 +110,17 @@ class AuthController extends Controller
             && array_key_exists( 'password', $params )
             && $params['username']
             && $params['password'];
+    }
+
+    protected function checkResetParams ($params)
+    {
+        return array_key_exists( 'oldpasswd', $params )
+            && array_key_exists( 'newpasswd', $params )
+            && array_key_exists( 'newpasswd2', $params )
+            && $params['oldpasswd']
+            && $params['newpasswd']
+            && $params['newpasswd2']
+            && ($params['newpasswd']===$params['newpasswd2']);
     }
 
     protected function _origin ()
