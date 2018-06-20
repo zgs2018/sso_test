@@ -3,3 +3,5 @@
 App/Runtime/*
 !App/Runtime/index.html
 _M/*
+Upload/*
+!Upload/index.html
