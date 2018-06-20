@@ -103,7 +103,7 @@ class StudentController extends BaseController
             if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
                 $info=$this->uploadOne( $fileKey, 'headpic/' );
                 $info===false && E($this->error);
-                $data['headpic']        =   $info['savepath'].$info['savename'];
+                $data['headpic']        =   './Upload/'.$info['savepath'].$info['savename'];
                 $data['student_id']     =   (int)session('_student.id');
                 $model                  =   new ProfileModel();
                 if( $model->find($data['student_id']) ){
