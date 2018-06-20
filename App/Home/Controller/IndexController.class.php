@@ -14,6 +14,7 @@ class IndexController extends Controller
 
     public function test ()
     {
+        exit('-...');
         $model      =   new StudentModel();
         $info       =   $model->find(1);
         if( session('?_student') )
