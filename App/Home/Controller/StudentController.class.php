@@ -92,7 +92,7 @@ class StudentController extends BaseController
         }
     }
 
-    public function uploadHeadpic ($fileKey='headpic')
+    public function uploadHeadpic ($fileKey='file')
     {
         try{
             if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
