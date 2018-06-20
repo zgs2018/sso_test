@@ -66,7 +66,7 @@ class BaseController extends Controller
         $upload                 =   new Upload();
         $upload->maxSize        =   3145728 ;// 设置附件上传大小
         $upload->exts           =   array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath       =   './Upload'; // 设置附件上传根目录
+        $upload->rootPath       =   './Upload/'; // 设置附件上传根目录
         $upload->savePath       =   $path; // 设置附件上传（子）目录
         $upload->autoSub        =   true;
         $upload->subName        =   ['date','Y-m-d'];
