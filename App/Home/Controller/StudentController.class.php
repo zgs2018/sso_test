@@ -31,8 +31,9 @@ class StudentController extends BaseController
         // 课程
         // 班级
         $period                 =   $periodModel->period_list(['s.id'=>['eq',$s_id]]);
-        $period                 =   array_map( function($p){
-            $p['course_pic']        =   'http://192.168.0.160:8087'.substr( $p['course_pic'],1 );
+        $crm_domain             =   C('CRM_DOMAIN');
+        $period                 =   array_map( function($p) use($crm_domain){
+            $p['course_pic']        =   $crm_domain.substr( $p['course_pic'],1 );
             return $p;
         },$period );
         // 排课

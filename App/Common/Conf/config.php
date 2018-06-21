@@ -133,4 +133,10 @@ return array(
 
     // 扩展配置
     'LOAD_EXT_CONFIG'       =>  env('LOAD_EXT_CONFIG','route,database,mail'),
+
+
+
+
+    // TODO 自定义参数
+    'CRM_DOMAIN'            =>  env('CRM_DOMAIN','http://crm.xiaoying.net')
 );
