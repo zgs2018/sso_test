@@ -1,5 +1,5 @@
 <?php
-namespace Home\Model;
+namespace Apply\Model;
 
 use Think\Model;
 

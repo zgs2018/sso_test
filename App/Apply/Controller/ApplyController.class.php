@@ -1,5 +1,5 @@
 <?php
-namespace Home\Controller;
+namespace Apply\Controller;
 
 use Common\Controller\BaseController;
 use http\Env\Request;
@@ -156,6 +156,7 @@ class ApplyController extends BaseController
         {
             $data['file'] = $v['path'];
             $data['name'] = $v['name'];
+            $data['student_id'] = $this->stdt_id;
 
             // 执行添加操作
             try {

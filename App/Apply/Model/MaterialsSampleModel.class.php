@@ -1,5 +1,5 @@
 <?php
-namespace Home\Model;
+namespace Apply\Model;
 
 
 class MaterialsSampleModel extends CRMBaseModel
