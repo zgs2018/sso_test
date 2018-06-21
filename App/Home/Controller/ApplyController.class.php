@@ -29,7 +29,7 @@ class ApplyController extends BaseController
         // 按学员搜索
         $condition = ' `student_id` = '.$this->stdt_id;
         // 按申请类别搜索
-        if ($tag) $condition .= 'ADN tag = '.$tag;
+        if ($tag) $condition .= ' AND `tag` = '.$tag;
         // 读取数据
         $list = D('MaterialsApply')->getMyApply($condition);
 
@@ -133,43 +133,6 @@ class ApplyController extends BaseController
 
         // 删除成功,返回列表页
         $this->ajaxReturn(['status'=>true,'msg'=>'success.']);
-    }
-
-    public function stuupload()
-    {
-        header("Access-Control-Allow-Origin: *");
-
-        // 如果有文件上传 上传附件
-        import('@.ORG.UploadFile');
-
-        //导入上传类
-        $upload = new UploadFile();
-        //设置上传文件大小
-        $upload->maxSize = 20000000;
-        //设置附件上传目录
-        $dirname = UPLOAD_PATH . date('Ym', time()) . '/' . date('d', time()) . '/';
-        $upload->allowExts = array();// 设置上传文件后缀
-        $upload->allowTypes = array();// 设置上传文件类型
-        $upload->thumbRemoveOrigin = false;//是否删除原文件
-        if (!is_dir($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->ajaxReturn(['status'=>false,'msg'=>L('ATTACHMENTS TO UPLOAD DIRECTORY CANNOT WRITE')]);
-        }
-        $upload->savePath = $dirname;
-
-        if (!$upload->upload()) {// 上传错误提示错误信息
-            $this->ajaxReturn(['status'=>false,'msg'=>$upload->getErrorMsg()]);
-        } else {// 上传成功 获取上传文件信息
-            $info = $upload->getUploadFileInfo();
-            if (is_array($info[0]) && !empty($info[0])) {
-                $upload = $dirname . $info[0]['savename'];
-                $file_name = $info[0]['name'];// 新增,多文件上传保留文件名称
-            } else {
-                $this->ajaxReturn(['status'=>false,'msg'=>'文件上传失败，请重试！']);
-            }
-            // 返回文件路径
-            $this->ajaxReturn(['status'=>true,'data'=>['path'=>$upload,'name'=>$file_name]]);
-        }
-
     }
 
     /**

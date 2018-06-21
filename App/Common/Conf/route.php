@@ -39,6 +39,6 @@ return [
         'api/mymaterials'                 =>  'Home/Apply/myMaterials',  // 我的材料
         'api/mysample'                 =>  'Home/Apply/myMaterialsSample',  // 我的样本
         'api/studelmaterials'                 =>  'Home/Apply/delCurrentUserMaterials',  // 删除材料
-        'api/stuaddmaterials'                 =>  'Home/Apply/stuMaterialsAdd',  // 删除材料
+        'api/stuaddmaterials'                 =>  'Home/Apply/stuMaterialsAdd',  // 添加材料
     ],
 ];
