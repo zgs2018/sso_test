@@ -10,4 +10,5 @@ return array(
         'DB_PWD'=>'root',
         'DB_PREFIX'=>'',
     ),
+    // test
 );
