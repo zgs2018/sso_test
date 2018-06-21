@@ -27,8 +27,8 @@ class AuthController extends Controller
         try{
             $this->isLoginYet() && E('您已经登陆了');
             // TODO change
-            if( !IS_POST || IS_AJAX ){
-                $params         =   I('get.');
+            if( IS_POST && IS_AJAX ){
+                $params         =   I('post.');
                 // 参数检验
                 $this->checkLoginParams( $params ) || E('用户名或密码不合法!',203);
                 // 证书验证
@@ -75,8 +75,8 @@ class AuthController extends Controller
     public function reset ()
     {
         try{
-            if( !IS_POST || IS_AJAX ){
-                $params                 =   I('get.');
+            if( IS_POST && IS_AJAX ){
+                $params                 =   I('post.');
                 $model                  =   new StudentModel();
                 $this->checkResetParams($params) || E('参数有误');
                 $model->student_login( session('_student.mobile'), $params['oldpasswd'] ) || E('旧密码不正确');

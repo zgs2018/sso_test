@@ -31,8 +31,9 @@ class StudentController extends BaseController
         // 课程
         // 班级
         $period                 =   $periodModel->period_list(['s.id'=>['eq',$s_id]]);
-        $period                 =   array_map( function($p){
-            $p['course_pic']        =   'http://192.168.0.160:8087'.substr( $p['course_pic'],1 );
+        $crm_domain             =   C('CRM_DOMAIN');
+        $period                 =   array_map( function($p) use($crm_domain){
+            $p['course_pic']        =   $crm_domain.substr( $p['course_pic'],1 );
             return $p;
         },$period );
         // 排课
@@ -49,6 +50,9 @@ class StudentController extends BaseController
             'period'                    =>  $period,
             'letterUnreadCount'         =>  $letterUnreadCount,
             'info'                      =>  $studentInfo,
+            'desc'                      =>  [
+                'status:本节课是否已经上过 已结束（-1） 即将开始（1），signin:是否签到 请假（-7） 未签到（0，null） 已签到（1）'
+            ],
         ] );
     }
 
@@ -67,8 +71,8 @@ class StudentController extends BaseController
     public function setting ()
     {
         try{
-            if( !IS_POST || IS_AJAX ){
-                $params             =   I('get.');
+            if( IS_POST && IS_AJAX ){
+                $params             =   I('post.');
                 $s_id               =   (int)session('_student.id');
                 $profileModel       =   new ProfileModel();
                 C('TOKEN_ON',false);
@@ -87,9 +91,9 @@ class StudentController extends BaseController
                 }
                 E( $profileModel->getError() );
             }
-            E('非法请求');
+            E('非法请求',403);
         }catch (Exception $e){
-            $profileModel->rollback();
+            $e->getCode()==403||$profileModel->rollback();
             $this->ajaxReturn( [
                 'result'            =>  false,
                 'error'             =>  $e->getMessage()
@@ -103,7 +107,7 @@ class StudentController extends BaseController
             if( $_FILES[$fileKey] && $_FILES[$fileKey]['error']==0 ){
                 $info=$this->uploadOne( $fileKey, 'headpic/' );
                 $info===false && E($this->error);
-                $data['headpic']        =   $info['savepath'].$info['savename'];
+                $data['headpic']        =   './Upload/'.$info['savepath'].$info['savename'];
                 $data['student_id']     =   (int)session('_student.id');
                 $model                  =   new ProfileModel();
                 if( $model->find($data['student_id']) ){
