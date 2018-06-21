@@ -34,5 +34,11 @@ return [
         /* letter */
         'api/letter/list'           =>  'Home/Letter/index',// 获取信件列表
         'api/letter/read'           =>  'Home/Letter/read',// 信件标记已读
+
+        'api/myapply'                 =>  'Home/Apply/myApply',  // 我的申请
+        'api/mymaterials'                 =>  'Home/Apply/myMaterials',  // 我的材料
+        'api/mysample'                 =>  'Home/Apply/myMaterialsSample',  // 我的样本
+        'api/studelmaterials'                 =>  'Home/Apply/delCurrentUserMaterials',  // 删除材料
+        'api/stuaddmaterials'                 =>  'Home/Apply/stuMaterialsAdd',  // 删除材料
     ],
 ];
