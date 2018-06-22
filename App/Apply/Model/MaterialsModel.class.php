@@ -8,7 +8,7 @@ class MaterialsModel extends CRMBaseModel
 
     public function getMaterials($condition)
     {
-        $data = $this->db(1,"DB_CONFIG_EDU")->query('select * from `mx_materials` WHERE '.$condition);
+        $data = $this->db(1,"DB_CONFIG_EDU")->query('select * from `mx_materials` WHERE '.$condition.' order by `create_time` desc');
         return $data;
     }
 
