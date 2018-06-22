@@ -58,7 +58,6 @@
 						url:"/api/letter/list",
 						success:function(data){
 							_self.data = data.lists
-							console.log(data)
 						}
 					});
 				}
@@ -77,7 +76,7 @@
 						}
 					})
 				}
-				window.location.href = "/m/index/message/details?id="+$(this).attr("data_id")
+				window.location.href = "/m/message/details?id="+$(this).attr("data_id")
 			})
 			
 				

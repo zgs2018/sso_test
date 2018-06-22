@@ -25,205 +25,54 @@
 			</header>
 			<div class="course_list">
 				<div class="list_tab">
-					<span class="active_tab">未学习（66）</span>
-					<span>已学习<i class="green">（12）</i></span>
+					<span class="active_tab">未学习（{{arry.unfinished.length}}）</span>
+					<span>已学习<i class="green">（{{arry.finished.length}}）</i></span>
 				</div>
 				<div class="list">
 					<div>
 						<div class="course_item">
-							<p class="list_title"><i class="fa fa-lock fa-lg green"></i>0-N1中日教名师全程签约班 — 初级上（19课时）</p>
+							<p class="list_title"><i class="fa fa-lock fa-lg green"></i>{{data.course_name}}</p>
 							<ul>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-up fa-lg"></i></p>
-									<div class="course_but course_but_open" style="height: auto">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
+								<li class="item_content" v-for="item in arry.unfinished">
+									<p class="item_text">
+										<i class="fa fa-video-camera left"></i>{{item.section_name}}----{{item.title}} <i class="_right fa fa-angle-down fa-lg"></i></p>
 									<div class="course_but">
 										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
+											<li>{{item.start_time}} - {{item.end_time}} (时长{{item.duration}}分钟)</li>
 										</ul>
 										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
+											<a href="javascript:;" onclick="prompt();">预习课件</a>
+											<a href="javascript:;" onclick="prompt();">背单词</a>
+											<a href="javascript:;" onclick="prompt();">做练习</a>
 										</div>
 									</div>
 								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-
-							</ul>
-						</div>
-						<div class="course_item">
-							<p class="list_title"><i class="fa fa-lock fa-lg green"></i>中级（19课时）</p>
-							<ul>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-
-									</div>
-								</li>
-
 							</ul>
 						</div>
 					</div>
 					<div>
 						<div class="course_item">
-							<p class="list_title"><i class="fa fa-unlock-alt fa-lg green"></i>初级（20课时）</p>
+							<p class="list_title"><i class="fa fa-unlock-alt fa-lg green"></i>{{data.course_name}}</p>
 							<ul>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-up fa-lg"></i></p>
-									<div class="course_but course_but_open" style="height:auto;">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
+								<li class="item_content" v-for="item in arry.finished">
+									<p class="item_text" style="color:#999999">
+										<i class="fa fa-video-camera left"></i>
+										<span class="finished_title">{{item.section_name}}--{{item.title}}</span> 
+										<span class="signin_status" v-if="item.signin_status =='1'">已签到</span>
+										<span class="signin_status" v-else-if="item.signin_status =='-7'">请假</span>
+										<span class="signin_status" v-else>未签到</span> <i class="_right fa fa-angle-down fa-lg"></i></p>
 									<div class="course_but">
 										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
+											<li>{{item.start_time}} - {{item.end_time}} (时长{{item.duration}}分钟)</li>
+											<!--<li>2018-03-22 周四 19：30 — 20：30</li>-->
 										</ul>
 										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
+											<a href="javascript:;" onclick="prompt();">预习课件</a>
+											<a href="javascript:;" onclick="prompt();">背单词</a>
+											<a href="javascript:;" onclick="prompt();">做练习</a>
 										</div>
 									</div>
 								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-
-							</ul>
-						</div>
-						<div class="course_item">
-							<p class="list_title"><i class="fa fa-unlock-alt fa-lg green"></i>中级（20课时）</p>
-							<ul>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-									</div>
-								</li>
-								<li class="item_content">
-									<p class="item_text"><i class="fa fa-video-camera left"></i>初级复习09 <i class="_right fa fa-angle-down fa-lg"></i></p>
-									<div class="course_but">
-										<ul>
-											<li>初级留学下（共计66课时） ----- 初级口语 09</li>
-											<li>2018-03-22 周四 19：30 — 20：30</li>
-										</ul>
-										<div>
-											<a href="#">预习课件</a>
-											<a href="#">背单词</a>
-											<a href="#">做练习</a>
-										</div>
-
-									</div>
-								</li>
-
 							</ul>
 						</div>
 					</div>
@@ -239,16 +88,17 @@
 			data: {
 				data: {},
 				arry: {
-					finished:{},
-					unfinished:{}
+					finished: {},
+					unfinished: {}
 				}
 			},
 			methods: {
 				get_data: function() {
-					var _id = getQueryString("id")
+					var _id = getQueryString("id");
 					var _self = this;
-					var arry1 = [];
-					var arry2 = [];
+					var finished = [];
+					var unfinished = [];
+					var arry = [];
 					$.ajax({
 						type: "post",
 						url: "/api/student/info",
@@ -258,19 +108,39 @@
 									_self.data = res.period[i]
 								}
 							}
-	
+
 							$.each(res.schedule, function(k, v) {
 								$.each(v, function(j, m) {
-									arry1.push(m)
+									arry.push(m)
 								});
-//								document.write("< br />");
 							});
-//							_self.arry = res.period[i]
-							console.log(res.schedule)
-							console.log(arry1)
+							$.each(arry, function(x, y) {
+								if(y.status == "-1") {
+									finished.push(y)
+								} else if(y.status == "1") {
+									unfinished.push(y)
+								}
+							})
+							_self.arry.finished = finished;
+							_self.arry.unfinished = unfinished;
 						}
 					});
 				}
+			},
+			updated() {
+				$(".item_content").click(function() {
+					course_hour.drop_down.open_click(
+						$(this),
+						"fa-angle-up",
+						"course_but_open",
+						"course_but",
+						"_right",
+						"fa-angle-down",
+					)
+				})
+				$(".list_tab>span").click(function() {
+					course_hour.tab_switch($(this), "active_tab", $(".list_tab>span"), $(".list>div"))
+				})
 			}
 		})
 
@@ -286,20 +156,6 @@
 			if(r != null) return unescape(r[2]);
 			return "";
 		}
-
-		$(".item_content").click(function() {
-			course_hour.drop_down.open_click(
-				$(this),
-				"fa-angle-up",
-				"course_but_open",
-				"course_but",
-				"_right",
-				"fa-angle-down",
-			)
-		})
-		$(".list_tab>span").click(function() {
-			course_hour.tab_switch($(this), "active_tab", $(".list_tab>span"), $(".list>div"))
-		})
 
 		var course_hour = {
 			drop_down: {
@@ -356,6 +212,10 @@
 				}
 
 			}
+		}
+		
+		function prompt(){
+			alert("作业系统正在开发中,敬请期待...")
 		}
 	</script>
 

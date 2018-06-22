@@ -44,12 +44,12 @@
 					<div class="progress">
 						<div class="progress_">
 							<p class="progress_bar"><i></i></p>
-							<span class="progress_num">{{item.cycle}}%</span>
+							<span class="progress_num">{{item.finished/item.section_total*100}}%</span>
 						</div>
 						<div class="course_but">
 							<!--['http://192.168.0.152/crm/'+item.file]-->
-							<a :href="['/m/index/course/hour?id='+item.period_id]"  class="course_see">查看课节</a>
-							<a href="['/m/index/course/hour?id='+item.period_id]"  class="course_">进入教室</a>
+							<a :href="['/m/course/hour?id='+item.period_id]" class="course_see">查看课节</a>
+							<a href="['/m/course/hour?id='+item.period_id]" class="course_">进入教室</a>
 						</div>
 					</div>
 				</li>
@@ -67,17 +67,19 @@
 			methods: {
 				get_data: function() {
 					var _self = this;
+					var arry = [];
+					var finished = [];
+					var unfinished = [];
 					$.ajax({
 						type: "post",
 						url: "/api/student/info",
 						success: function(res) {
 							_self.data = res.period
-							console.log(res)
 						}
 					});
 				}
 			},
-			updated(){
+			updated() {
 				for(var i = 0; i < $(".my_course>li").length; i++) {
 					var str = $(".my_course>li").eq(i).find(".progress_num").text();
 					$(".my_course>li").eq(i).find(".progress_bar>i").css({

@@ -119,6 +119,7 @@ body {
 .class_hour > div .open_but {
   padding: 0;
   text-align: center;
+  cursor: pointer;
 }
 
 .class_hour > div .open_but i {
@@ -128,35 +129,45 @@ body {
 .class_hour .class_list {
   width: 100%;
 }
-
+.class_hour .class_list >ul{
+	max-height: 6rem;
+	overflow-y: auto;
+}
 .class_hour .class_item {
   width: 92%;
   margin: 0 auto;
-  padding-bottom: 0.533333rem;
+
   border-bottom: 0.026667rem solid #dbdbdb;
 }
 
 .class_hour .class_item .class_title {
-  font-size: 0.386667rem;
-  margin: 0.4rem 0 0.666667rem 0;
+  font-size: 0.35rem;
+  margin: 0.4rem 0 0.2rem 0;
+
+/*  color: #34495e;*/
 }
 
 .class_hour .class_item .class_content {
   overflow: hidden;
+  line-height: 0.6rem;
+    padding-bottom: 0.3rem;
 }
 
 .class_hour .class_item .class_content .video {
-  color: #999999;
+  color: #23c25f;
   vertical-align: middle;
   margin-right: 0.306667rem;
 }
 
 .class_hour .class_item .class_content .class_text {
+	width: 90%;
   display: inline-block;
   font-size: 0.28rem;
   color: #999999;
 }
-
+.class_hour .class_item .class_content .class_text>i{
+	float: right;
+}
 .class_hour .class_item .class_content .class_but {
   display: inline-block;
   width: 1.6rem;
@@ -267,4 +278,5 @@ body {
 .footer > a .fa-calculator {
   color: #76d728;
 }
+
 /*# sourceMappingURL=index.css.map */

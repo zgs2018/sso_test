@@ -25,6 +25,10 @@
 		<div class="sign_in_but">
 			登录
 		</div>
+		
+		<div class="sign_up_but">
+			还没有账号？<a href="#">注册</a>
+		</div>
 	</body>
 	<script src="/public/Mobile/js/jquery-3.1.1.min.js"></script>
 	<script src="/public/Mobile/js/jquery.cookie.js"></script>
@@ -71,10 +75,9 @@
 					username: $("#username").val(),
 					password: $("#password").val()
 				},
-				url: "api/login",
+				url: "/api/login",
 				success: function(data) {
-					alert(data.msg)
-					window.location.href = "m/index"
+					window.location.href = "/m"
 				}
 				
 			});

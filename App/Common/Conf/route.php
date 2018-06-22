@@ -35,11 +35,11 @@ return [
         'api/letter/list'           =>  'Home/Letter/index',// 获取信件列表
         'api/letter/read'           =>  'Home/Letter/read',// 信件标记已读
 
-        'api/myapply'                 =>  'Apply/Apply/myApply',  // 我的申请
-        'api/mymaterials'                 =>  'Apply/Apply/myMaterials',  // 我的材料
-        'api/mysample'                 =>  'Apply/Apply/myMaterialsSample',  // 我的样本
-        'api/studelmaterials'                 =>  'Apply/Apply/delCurrentUserMaterials',  // 删除材料
-        'api/stuaddmaterials'                 =>  'Apply/Apply/stuMaterialsAdd',  // 添加材料
+        'api/myapply'               =>  'Apply/Apply/myApply',  // 我的申请
+        'api/mymaterials'           =>  'Apply/Apply/myMaterials',  // 我的材料
+        'api/mysample'              =>  'Apply/Apply/myMaterialsSample',  // 我的样本
+        'api/studelmaterials'       =>  'Apply/Apply/delCurrentUserMaterials',  // 删除材料
+        'api/stuaddmaterials'       =>  'Apply/Apply/stuMaterialsAdd',  // 添加材料
 
 
 

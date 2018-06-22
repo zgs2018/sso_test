@@ -3,6 +3,9 @@
 * {
   margin: 0;
   padding: 0;
+  	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 i,
@@ -70,6 +73,7 @@ body {
 .sign_in_form .remember {
   font-size: 0.373333rem;
   color: #333333;
+  cursor: pointer;
 }
 
 .sign_in_form .remember > i {
@@ -102,5 +106,16 @@ body {
   text-align: center;
   line-height: 1.173333rem;
   margin-top: 3rem;
+  cursor: pointer;
+}
+.sign_up_but{
+	margin-top: 0.41rem;
+	text-align: center;
+	font-size: 0.38rem;
+	color: #999999;
+}
+.sign_up_but>a{
+	font-size:0.42rem;
+	color: #3DD5A4;
 }
 /*# sourceMappingURL=sign_in.css.map */

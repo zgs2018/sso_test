@@ -1,6 +1,9 @@
 * {
   margin: 0;
   padding: 0;
+  	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 i,
@@ -87,6 +90,7 @@ body {
   display: inline-block;
   text-align: center;
   color: #999999;
+  cursor: pointer;
 }
 
 .course_list .list_tab .active_tab {
@@ -137,17 +141,20 @@ body {
 .course_list .course_item .item_text .left {
   margin-right: 0.173333rem;
   color: #DBDBDB;
+  vertical-align: text-bottom;
 }
 
 .course_list .course_item .item_text ._right {
   float: right;
   color: #999999;
   padding-left: 0.5rem;
+  cursor: pointer;
 }
 
 .course_list .course_item .course_but {
   display: none;
   height: 0;
+  cursor: pointer;
 }
 
 .course_list .course_item .course_but > div {
@@ -188,5 +195,26 @@ body {
 .course_list .item_content {
   border-bottom: 0.026667rem solid #EEEEEE;
   padding-bottom: 0.466667rem;
+  cursor: pointer;
+}
+.finished_title{
+	display: inline-block;
+	width: 6rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.signin_status{
+	    background-color: rgba(64,158,255,.1);
+    padding: 0 0.26rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.3rem;
+    color: #409eff;
+    border-radius: 0.1rem;
+    box-sizing: border-box;
+    border: 0.026rem solid rgba(64,158,255,.2);
+    white-space: nowrap;
 }
 /*# sourceMappingURL=course_hour.css.map */

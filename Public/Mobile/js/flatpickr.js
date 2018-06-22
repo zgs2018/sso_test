@@ -726,7 +726,6 @@
           setupMobile();
           return;
         }
-
         var debouncedResize = debounce(onResize, 50);
         self._debouncedChange = debounce(triggerChange, DEBOUNCED_CHANGE_MS);
         if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent)) bind(self.daysContainer, "mouseover", function (e) {
@@ -739,18 +738,15 @@
         bind(window.document, "focus", documentClick, {
           capture: true
         });
-
         if (self.config.clickOpens === true) {
           bind(self._input, "focus", self.open);
           bind(self._input, "mousedown", onClick(self.open));
         }
-
         if (self.daysContainer !== undefined) {
           bind(self.monthNav, "mousedown", onClick(onMonthNavClick));
           bind(self.monthNav, ["keyup", "increment"], onYearInput);
-          bind(self.daysContainer, "mousedown", onClick(selectDate));
+//        bind(self.daysContainer, "mousedown", onClick(selectDate));
         }
-
         if (self.timeContainer !== undefined && self.minuteElement !== undefined && self.hourElement !== undefined) {
           var selText = function selText(e) {
             return e.target.select();
