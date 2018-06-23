@@ -17,8 +17,9 @@ class IndexController extends Controller
             $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
             $result                 =   true;
             $_sql                   =   $model->_sql();
+            $count                  =   (int)$model->where($conditions['conditions'])->count();
 
-            $this->ajaxReturn( compact('result', 'lists', '_sql') );
+            $this->ajaxReturn( compact('result', 'conditions', 'lists', 'count', '_sql') );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  true,
@@ -31,12 +32,12 @@ class IndexController extends Controller
     {
         $conditions             =   [];
         $order                  =   'id desc';
-        $limit                  =   [0,20];
         $livecate               =   'livecate';
         $livecontent            =   'livecontent';
         $search                 =   'search';
         $is_rec                 =   'is_reco';
-        $limit_key              =   'page';
+        $page_key               =   'page';
+        $limit_key              =   'limit';
         $order_key              =   'order';
         // 直播类型
         if( key_exists($livecate,$params) )
@@ -58,11 +59,16 @@ class IndexController extends Controller
         // 排序
         if( key_exists($order_key, $params) )
             $order                      =   $params[$order_key];
-        // 分页
-        if( key_exists($limit_key, $params) )
-            $limit                      =   $params[$limit_key];
+        // 页数
+        $page                           =   key_exists($page_key, $params)
+            ?   (int)$params[$page_key]
+            :   1;
+        // 条目数  最多一次显示100条
+        $limit                          =   !key_exists($limit_key, $params)
+            ?   20
+            :   ($params[$limit_key]>100 ? 100 : (int)$params[$limit_key]);
 
-        return ['conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit ];
+        return ['conditions'=>$conditions, 'order'=>$order, 'limit'=>compact('page','limit') ];
     }
 
     public function detail ()

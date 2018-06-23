@@ -18,7 +18,7 @@ class OpenclassModel    extends MxModel
         ],
     ];
 
-    public function lists ($where=null,$order=null,$limit=null)
+    public function lists ($where=null,$order=null,$limit)
     {
         $_where         =   [];
         $_order         =   [];
@@ -30,16 +30,10 @@ class OpenclassModel    extends MxModel
                 ?   $order
                 :   implode(',', array_filter($order) );
         }
-        if( !is_null($limit) ){
-            $_limit         =   is_string($limit)
-                ?   $limit
-                :   implode(',',$limit);
-        }
-        $builder            =   $this->alias('o_c')
-            ->field('playback_addr,content',true);
+        $builder            =   $this->field('playback_addr,content',true);
         $_where && $builder->where( $_where );
         $_order && $builder->order( $_order );
-        $_limit && $builder->limit( $_limit );
+        $builder->page( $limit['page'] )->limit( $limit['limit'] );
         return $builder->select();
     }
 
