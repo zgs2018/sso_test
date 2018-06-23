@@ -18,17 +18,29 @@ class OpenclassModel    extends MxModel
         ],
     ];
 
-    public function lists ($where=null,$order='add_ts desc')
+    public function lists ($where=null,$order=null,$limit=null)
     {
         $_where         =   [];
+        $_order         =   [];
+        $_limit         =   [];
         if( !is_null($where) && is_array($where) )
             $_where         =   array_merge( $where, $_where );
-
-        return $this->alias('o_c')
-            ->field('playback_addr,content',true)
-            ->where($_where)
-            ->order($order)
-            ->select();
+        if( !is_null($order) ){
+            $_order         =   is_string($order)
+                ?   $order
+                :   implode(',', array_filter($order) );
+        }
+        if( !is_null($limit) ){
+            $_limit         =   is_string($limit)
+                ?   $limit
+                :   implode(',',$limit);
+        }
+        $builder            =   $this->alias('o_c')
+            ->field('playback_addr,content',true);
+        $_where && $builder->where( $_where );
+        $_order && $builder->order( $_order );
+        $_limit && $builder->limit( $_limit );
+        return $builder->select();
     }
 
     protected function _after_find(&$result, $options)
