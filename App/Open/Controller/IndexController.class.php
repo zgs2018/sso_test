@@ -14,7 +14,7 @@ class IndexController extends Controller
             $params                 =   I('get.');
             $conditions             =   $this->conditionsHandle($params);
             $model                  =   new OpenclassModel();
-            $lists                  =   $model->lists($conditions);
+            $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
             $result                 =   true;
             $_sql                   =   $model->_sql();
 
@@ -30,10 +30,14 @@ class IndexController extends Controller
     public function conditionsHandle ($params)
     {
         $conditions             =   [];
+        $order                  =   'id desc';
+        $limit                  =   [0,20];
         $livecate               =   'livecate';
         $livecontent            =   'livecontent';
         $search                 =   'search';
         $is_rec                 =   'is_reco';
+        $limit_key              =   'page';
+        $order_key              =   'order';
         // 直播类型
         if( key_exists($livecate,$params) )
             $conditions[$livecate]      =   ['eq',(int)$params[$livecate]];
@@ -51,8 +55,14 @@ class IndexController extends Controller
             }
             $conditions['_string']      =   implode( ' AND ', $content_types );
         }
+        // 排序
+        if( key_exists($order_key, $params) )
+            $order                      =   $params[$order_key];
+        // 分页
+        if( key_exists($limit_key, $params) )
+            $limit                      =   $params[$limit_key];
 
-        return $conditions;
+        return ['conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit ];
     }
 
     public function detail ()
