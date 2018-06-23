@@ -18,8 +18,9 @@ class IndexController extends Controller
             $result                 =   true;
             $_sql                   =   $model->_sql();
             $count                  =   (int)$model->where($conditions['conditions'])->count();
+            $crm_domain             =   C('CRM_DOMAIN');
 
-            $this->ajaxReturn( compact('result', 'conditions', 'lists', 'count', '_sql') );
+            $this->ajaxReturn( compact('result', 'conditions', 'lists', 'count', 'crm_domain', '_sql') );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  true,
@@ -52,7 +53,7 @@ class IndexController extends Controller
         if( key_exists($livecontent, $params) ){
             $content_types              =   [];
             foreach ($params[$livecontent] as $content){
-                $content_types[$content]        =  "FIND_IN_SET({$content},{$livecontent})";
+                $content_types[$content]        =  "FIND_IN_SET({$content},livecontent)";
             }
             $conditions['_string']      =   implode( ' AND ', $content_types );
         }
@@ -82,10 +83,7 @@ class IndexController extends Controller
                 ->field(true)
                 ->find($id);
             $info || E('数据不存在');
-            if( !session('?_student') ){
-                $info['playback_addr']      =   'NEED_AUTH';
-            }
-            $this->ajaxReturn( ['result'=>true,'info'=>$info] );
+            $this->ajaxReturn( ['result'=>true,'info'=>$info,'crm_domain'=>C('CRM_DOMAIN')] );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  false,
