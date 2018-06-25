@@ -44,7 +44,7 @@ class OpenclassModel    extends MxModel
 
     public function countNum ($where)
     {
-        return (int)$this->QueryBuilder($where)->count();
+        return (int)$this->QueryBuilder($where)->count('distinct pc.id');
     }
 
     protected function QueryBuilder ($where)
