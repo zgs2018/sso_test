@@ -56,7 +56,7 @@ class IndexController extends Controller
         $order_key              =   'order';
         $init_key               =   'init';
         // 直播类型
-        if( key_exists($livecate,$params) )
+        if( key_exists($livecate,$params) && $params[$livecate] )
             $conditions[$livecate]      =   ['eq',(int)$params[$livecate]];
         // 是否推荐
         if( key_exists($is_rec, $params) )
