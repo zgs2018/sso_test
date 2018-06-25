@@ -27,7 +27,7 @@ $(function() {
                     if (_val == '') {
                         this.livecontent = []
                     }
-                    _val = this.livecontent.join(',');
+                    _val = this.livecontent;
                 }
                 this.classdata = [];
                 this.request[_flag] = _val;
