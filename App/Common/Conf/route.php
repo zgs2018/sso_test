@@ -7,7 +7,6 @@
 return [
     'URL_ROUTE_RULES'       =>  [
         // Home
-        '/'                         =>  'Open/View/index',      // 主页 公开课
 
 
 
@@ -18,6 +17,7 @@ return [
 
 
     'URL_MAP_RULES'         =>  [
+        '/'                         =>  'Open/View/index',      // 主页 公开课
         'open'                      =>  'Open/View/index',      // 主页 公开课
         'open/detail'               =>  'Open/View/detail',     //详情
         'user'                      =>  'Home/Index/index',
@@ -44,22 +44,19 @@ return [
         'api/stuaddmaterials'       =>  'Apply/Apply/stuMaterialsAdd',  // 添加材料
 
 
-
-
-
         /* 手机端路由 */
         'm'                         =>  'Open/View/mindex', // 主页公开课
         'm/open'                    =>  'Open/View/mindex', // 主页公开课
         'm/open/detail'             =>  'Open/View/mdetail', // 公开课详情
 
         'm/user'                    =>  'Mobile/Index/index', // 个人中心
-        'm/login'					=>	'Mobile/Index/login',//登陆页面'
-        'm/course'			        =>	'Mobile/Index/course',//我的班级'
-        'm/course/hour'		        =>	'Mobile/Index/hour',//查看课节'
-        'm/apply'				    =>	'Mobile/Index/apply',//我的申请'
-        'm/visa'				    =>	'Mobile/Index/visa',//签证办理'
-        'm/seo'				        =>	'Mobile/Index/seo',//SEO申请'
-        'm/material'			    =>	'Mobile/Index/material',//我的材料'
+        'm/login'					=>	'Mobile/Index/login',//登陆页面
+        'm/course'			        =>	'Mobile/Index/course',//我的班级
+        'm/course/hour'		        =>	'Mobile/Index/hour',//查看课节
+        'm/apply'				    =>	'Mobile/Index/apply',//我的申请
+        'm/visa'				    =>	'Mobile/Index/visa',//签证办理
+        'm/seo'				        =>	'Mobile/Index/seo',//SEO申请
+        'm/material'			    =>	'Mobile/Index/material',//我的材料
         'm/message'			        =>	'Mobile/Index/message',//消息列表
         'm/message/details'	        =>	'Mobile/Index/messageDetails',//消息详情
         'm/set'	                    =>	'Mobile/Index/set',//个人信息

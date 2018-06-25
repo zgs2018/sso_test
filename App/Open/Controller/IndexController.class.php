@@ -13,7 +13,7 @@ class IndexController extends Controller
     {
         try{
             (IS_POST && IS_AJAX) || E('非法请求');
-            $params                 =   I('get.');
+            $params                 =   I('post.');
             $conditions             =   $this->conditionsHandle($params);
             $model                  =   new OpenclassModel();
             $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
@@ -65,8 +65,7 @@ class IndexController extends Controller
         if( key_exists($search, $params) )
             $conditions['names']        =   ['LIKE',"%{$params[$search]}%"];
         // 内容类型
-        if( key_exists($livecontent, $params) ){
-            $content_types              =   array_map( 'intval', array_filter( $params[$livecontent]) );
+        if( key_exists($livecontent, $params) && ($content_types = array_map( 'intval', array_filter( $params[$livecontent]) )) ){
             $conditions['lc.id']        =   ['in', $content_types];
         }
         // 排序
@@ -97,7 +96,7 @@ class IndexController extends Controller
     {
         try{
             (IS_POST && IS_AJAX) || E('非法请求');
-            $id             =   I('get.id',false,'int');
+            $id             =   I('post.id',false,'int');
             ($id===false) && E('参数缺失');
             $model          =   new OpenclassModel();
             $info           =   $model->relation(true)
