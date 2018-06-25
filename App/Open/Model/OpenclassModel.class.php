@@ -28,7 +28,7 @@ class OpenclassModel    extends MxModel
         ],
     ];
 
-    public function lists ($where=null,$order=null,$limit)
+    public function lists ($where=null,$having=null,$order=null,$limit=[])
     {
         $_order         =   [];
         if( !is_null($order) ){
@@ -38,6 +38,7 @@ class OpenclassModel    extends MxModel
         }
         $builder            =   $this->QueryBuilder( $where );
         $builder->group('pc.id');
+        $having && $builder->having($having);
         $_order && $builder->order( $_order );
         $builder->page( $limit['page'] )->limit( $limit['limit'] );
         return $builder->select();

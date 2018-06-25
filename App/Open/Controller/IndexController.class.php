@@ -17,7 +17,7 @@ class IndexController extends Controller
             $params                 =   I('post.');
             $conditions             =   $this->conditionsHandle($params);
             $model                  =   new OpenclassModel();
-            $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
+            $lists                  =   $model->lists($conditions['conditions'],$conditions['having'],$conditions['order'],$conditions['limit']);
             $result                 =   true;
             $_sql                   =   $model->_sql();
             $count                  =   $model->countNum($conditions['conditions']);
@@ -35,7 +35,7 @@ class IndexController extends Controller
                 '查询条件'      =>  'page:页码;limit:每页显示数量;livecate:直播分类;livecontent:直播内容(复合);is_reco:是否推荐;search:名称搜索;init:是否需要返回初始值(0.false,1.true)',
             ];
 
-            $this->ajaxReturn( compact('result', '_init', 'params', 'lists', 'count', 'crm_domain', 'remark') );
+            $this->ajaxReturn( compact('result', '_init', 'params', 'lists', 'count', 'crm_domain', 'remark', '_sql') );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  true,
@@ -47,6 +47,7 @@ class IndexController extends Controller
     public function conditionsHandle ($params)
     {
         $conditions             =   [];
+        $having                 =   "";
         $order                  =   'id desc';
         $livecate               =   'livecate';
         $livecontent            =   'livecontent';
@@ -68,6 +69,7 @@ class IndexController extends Controller
         // 内容类型
         if( key_exists($livecontent, $params) && ($content_types = array_map( 'intval', array_filter( $params[$livecontent]) ?: [] )) ){
             $conditions['lc.id']        =   ['in', $content_types];
+            $having                     =   'count(pc.id)>='.count($content_types);
         }
         // 排序
         if( key_exists($order_key, $params) && $params[$order_key] )
@@ -90,6 +92,7 @@ class IndexController extends Controller
             'order'             =>  $order,
             'limit'             =>  compact('page','limit'),
             'init'              =>  $init,
+            'having'            =>  $having,
         ];
     }
 
