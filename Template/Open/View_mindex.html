@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>小莺公开课</title>
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+		<script src="/Public/Mobile/js/flexible.js"></script>
+		<link rel="icon" href="__PUBLIC__/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="/Public/Mobile/css/View_mindex.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/Mobile/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/Mobile/css/swiper.min.css" />
+		<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+	</head>
+
+	<body>
+		<div id="_class">
+			<div class="header">
+				<a href="#">
+					<img class="logo" src="/Public/Mobile/img/logo2.png" />
+				</a>
+
+				<div>
+					<a href="#">登录</a><i>|</i>
+					<a href="#">注册</a>
+				</div>
+				<!--<a href="#" class="headpic"><img src="/Public/Mobile/img/logo.png"/></a>-->
+
+			</div>
+			<div class="banner">
+				<img src="/Public/Mobile/img/asd.jpg" />
+			</div>
+			<div class="content">
+				<div class="con_tab">
+					<span>即将直播 <i></i></span>
+					<span>往期回顾 <i></i></span>
+				</div>
+				<div class="_swiper">
+					<div class="_shadow">
+						<div class="swi">直播内容：</div>
+						<div class="swiper-container6 ">
+							<div class="swiper-wrapper condition">
+								<div class="swiper-slide">日语考试</div>
+								<div class="swiper-slide">实用日语</div>
+								<div class="swiper-slide">零基础起步</div>
+								<div class="swiper-slide">N2进阶N1</div>
+							</div>
+						</div>
+						<i></i>
+					</div>
+
+					<ul class="class_list">
+						<li v-for="item in data.lists">
+							<img :src="item.img_url" />
+							<p class="item_title">理工科研究生申请攻…</p>
+							<p class="item_time">时间: 2018/12/12</p>
+							<p class="item_teacher">讲师: 可乐老师</p>
+							<p class="item_deta"><span>60分钟</span><span>1366人</span></p>
+						</li>
+
+					</ul>
+					<div class="spinner"><i class="fa fa-spinner fa-pulse"></i>加载更多...</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="footer">
+			<p>
+				<a href="tel:4000-150-170">热线电话：4000-150-170</a><br />小莺教育科技有限公司 苏ICP备17069390号</p>
+		</div>
+	</body>
+	<script src="/Public/Mobile/js/jquery-3.1.1.min.js"></script>
+	<script src="/Public/Mobile/js/swiper.min.js"></script>
+	<script>
+		var _class = new Vue({
+			el: "#_class",
+			data: {
+				data: {}
+			},
+			methods: {
+				get_data: function() {
+					var _self = this;
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						data: {
+							livecate: "",
+							livecontent: "",
+							page: 1,
+							init: 1
+						},
+						url: "http://www.i.local/api/open",
+						success: function(res) {
+							console.log(res)
+							_self.data = res;
+						}
+					});
+				}
+			},
+			updated() {
+				$(window).scroll(function() {　　
+					var scrollTop = $(this).scrollTop();　　
+					var scrollHeight = $(document).height();　　
+					var windowHeight = $(this).height();　　
+					if(scrollTop + windowHeight == scrollHeight) {　
+						if($(".class_list>li").length >= 6) {
+							$(".spinner").fadeIn("fast")　
+						}　　
+
+					}
+				});
+			}
+
+		})
+		_class.get_data()
+
+		var mySwiper6 = new Swiper('.swiper-container6', {
+			slidesPerView: 2.6,
+			initialSlide: 1,
+			loop: true,
+			loopAdditionalSlides: 2,
+			centeredSlides: true,
+		})
+
+		$(".con_tab>span").click(function() {
+			if(!$(this).hasClass("active_tab")) {
+				$(".con_tab>span").removeClass();
+				$(this).addClass("active_tab")
+			} else {
+				$(this).removeClass("active_tab")
+			}
+		})
+
+		$(".condition .swiper-slide").click(function() {
+			if(!$(this).hasClass("active_condition")) {
+				$(this).addClass("active_condition")
+			} else {
+				$(this).removeClass("active_condition")
+			}
+		})
+	</script>
+
+</html>
