@@ -103,6 +103,11 @@
 						type: "post",
 						url: "/api/student/info",
 						success: function(res) {
+							if(res.result == false){
+								alert(res.msg)
+								window.location.href = "/m/login"
+							}else{
+							
 							for(var i = 0; i < res.period.length; i++) {
 								if(res.period[i].period_id == _id) {
 									_self.data = res.period[i]
@@ -124,6 +129,7 @@
 							_self.arry.finished = finished;
 							_self.arry.unfinished = unfinished;
 						}
+							}
 					});
 				}
 			},
@@ -135,7 +141,7 @@
 						"course_but_open",
 						"course_but",
 						"_right",
-						"fa-angle-down",
+						"fa-angle-down"
 					)
 				})
 				$(".list_tab>span").click(function() {

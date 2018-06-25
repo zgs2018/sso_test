@@ -16,6 +16,7 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
   cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .header {

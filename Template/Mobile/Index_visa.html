@@ -132,7 +132,7 @@
 					var _self = this;
 					$.ajax({
 						type: "post",
-						url: "http://192.168.0.152/crm/index.php/api/myapply",
+						url: "/api/myapply",
 						dataType: "json",
 						data: {
 							s_id: "",
@@ -140,12 +140,16 @@
 						},
 
 						success: function(res) {
-							//							_self.datas = res
+							if(res.status == false){
+								alert(res.msg)
+								window.location.href = "/m/login"
+							}else{
 							for(var i = 0; i < res.data.length; i++) {
 								res.data[i].create_time = _self._time(res.data[i].create_time)
 								res.data[i].offer_time = _self._time(res.data[i].offer_time)
 							}
 							_self.datas = res
+							}
 						}
 					});
 

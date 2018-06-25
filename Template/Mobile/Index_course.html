@@ -44,7 +44,7 @@
 					<div class="progress">
 						<div class="progress_">
 							<p class="progress_bar"><i></i></p>
-							<span class="progress_num">{{parseInt(item.finished/item.section_total)*100}}%</span>
+							<span class="progress_num">{{parseInt((item.finished/item.section_total)*100)}}%</span>
 						</div>
 						<div class="course_but">
 							<!--['http://192.168.0.152/crm/'+item.file]-->
@@ -74,7 +74,12 @@
 						type: "post",
 						url: "/api/student/info",
 						success: function(res) {
+							if(res.result == false){
+								alert(res.msg)
+								window.location.href = "/m/login"
+							}else{
 							_self.data = res.period
+							}
 						}
 					});
 				}

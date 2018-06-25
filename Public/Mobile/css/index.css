@@ -141,8 +141,9 @@ body {
 }
 
 .class_hour .class_item .class_title {
-  font-size: 0.35rem;
+  font-size: 0.4rem;
   margin: 0.4rem 0 0.2rem 0;
+  line-height: 2em;
 
 /*  color: #34495e;*/
 }
@@ -162,7 +163,7 @@ body {
 .class_hour .class_item .class_content .class_text {
 	width: 90%;
   display: inline-block;
-  font-size: 0.28rem;
+  font-size: 0.35rem;
   color: #999999;
 }
 .class_hour .class_item .class_content .class_text>i{

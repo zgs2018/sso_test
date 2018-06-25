@@ -75,7 +75,7 @@
 						data:{
 							s_id:""
 						},
-						url: "http://192.168.0.152/crm/index.php/api/mymaterials",
+						url: "/api/mymaterials",
 						success: function(res) {
 							//							_self.datas = res
 							for(var i = 0; i < res.data.length; i++) {
@@ -117,10 +117,15 @@
 						data:{
 							s_id:""
 						},
-						url: "http://192.168.0.152/crm/index.php/api/mysample",
+						url: "/api/mysample",
 						success: function(res) {
+							if(res.status == false){
+								alert(res.msg)
+								window.location.href = "/m/login"
+							}else{
 							
 							_self.item_datas = res.data
+							}
 						}
 					});
 				},

@@ -63,6 +63,10 @@
 			width: 1rem !important;
 			height: 0.75rem !important;
 			margin: 0 0.214rem !important;
+			font-size: 0.4rem !important;
+		}
+		.cur-month{
+			font-size: 0.4rem;
 		}
 		
 		.flatpickr-months {
@@ -82,6 +86,7 @@
 			border-radius: 50%;
 			margin-bottom: 0.06rem;
 			outline: none;
+			font-size: 0.4rem;
 		}
 		
 		.flatpickr-day.today {
@@ -194,7 +199,11 @@
 						type: "post",
 						url: "/api/student/info",
 						success: function(res) {
-							_self.data = res;
+							if(res.result == false){
+								alert(res.msg)
+								window.location.href = "/m/login"
+							}else{
+									_self.data = res;
 							$.each(res.schedule, function(k, v) {
 								hour.push(k)
 								_self.hour = hour;
@@ -211,6 +220,8 @@
 									_self.course = course;
 								}
 							})
+							}
+						
 						}
 					});
 				}

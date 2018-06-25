@@ -99,7 +99,12 @@
 						type: "post",
 						url: "/api/student/info",
 						success: function(res) {
+							if(res.result == false){
+								alert(res.msg)
+								window.location.href = "/m/login"
+							}else{
 							_self.data = res
+							}
 						}
 					});
 				},
