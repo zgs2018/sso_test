@@ -65,5 +65,6 @@ return [
         /* 公开课接口路由 */
         'api/open'                  =>  'Open/Index/index',// 列表
         'api/open/detail'           =>  'Open/Index/detail',// 详情
+        'api/open/snumIncre'        =>  'Open/Index/snumIncre', // 学习人数递增
     ],
 ];

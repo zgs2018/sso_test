@@ -37,6 +37,7 @@ class OpenclassModel    extends MxModel
                 :   implode(',', array_filter($order) );
         }
         $builder            =   $this->QueryBuilder( $where );
+        $builder->group('pc.id');
         $_order && $builder->order( $_order );
         $builder->page( $limit['page'] )->limit( $limit['limit'] );
         return $builder->select();
@@ -55,8 +56,7 @@ class OpenclassModel    extends MxModel
         return $this->alias('pc')->field('pc.id,pc.img_url,pc.t_img_url,pc.names,pc.start_time,pc.teacher,pc.sign_addr,pc.timelength,pc.studynum,pc.from_p,pc.add_ts,pc.update_time,pc.classway,pc.teacherdes,pc.is_reco')
             ->join("LEFT JOIN {$this->dbName}.__RPC__ rpc ON pc.id = rpc.p_id")
             ->join("LEFT JOIN {$this->dbName}.__LIVECONTENT__ lc ON rpc.c_id = lc.id")
-            ->where($_where)
-            ->group('pc.id');
+            ->where($_where);
     }
 
     protected function _after_find(&$result, $options)
