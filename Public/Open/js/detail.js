@@ -33,7 +33,7 @@ $(function(){
                     success:function(res){
                         if (res.result) {
                             if (res.info.playback_addr === 'NEED_AUTH') {
-                                res.info.playback_addr = "/user/login"
+                                res.info.playback_addr = "/user/#/login"
                             }
                             res.info.t_img_url = res.crm_domain + res.info.t_img_url
                             _this.classdata = res.info;

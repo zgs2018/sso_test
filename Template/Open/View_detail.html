@@ -74,7 +74,7 @@
 	    			<h3>推荐课程</h3>
 	    			<ul class="listUl">
 	    				<li class="item" v-for="n in reco">
-	    					<a class="titleline" href="__PUBLIC__/Open/detail.html?id=2">
+	    					<a class="titleline" :href="'/open/detail?id='+n.id">
 	    						<span class="border"></span><span v-html="n.names"></span>
 	    					</a>
 	    					<p class="des">学习课时:<font v-html="n.start_time"></font> + 时长:<font v-html="n.timelength"></font></p>
