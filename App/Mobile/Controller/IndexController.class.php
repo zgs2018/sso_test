@@ -9,4 +9,8 @@ class IndexController extends Controller
         $this->display();
     }
 
+    public function messageDetails (){
+        $this->display();
+    }
+
 }

@@ -79,9 +79,8 @@ class IndexController extends Controller
             $info           =   $model->relation(true)
                 ->field(true)
                 ->find($id);
-            dump($info);
-//            $info || E('数据不存在');
-//            $this->ajaxReturn( ['result'=>true,'info'=>$info,'crm_domain'=>C('CRM_DOMAIN')] );
+            $info || E('数据不存在');
+            $this->ajaxReturn( ['result'=>true,'info'=>$info,'crm_domain'=>C('CRM_DOMAIN')] );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  false,
