@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="ie lt-ie9 lt-ie8 lt-ie7" lang="zh-CN" itemscope itemtype="http://schema.org/WebPage"> <![endif]-->
+<!--[if IE 7]>
+<html class="ie lt-ie9 lt-ie8" lang="zh-CN" itemscope itemtype="http://schema.org/WebPage"> <![endif]-->
+<!--[if lt IE 10]>
+<html class="ie ltie10" lang="zh-CN" itemscope itemtype="http://schema.org/WebPage"> <![endif]-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>小莺出国-小莺出国</title>
+    <link rel="stylesheet" href="__PUBLIC__/Open/css/reset.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Open/css/animate.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Open/css/detail.css">
+    <script type="text/javascript" src="__PUBLIC__/Open/js/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+    <script src="__PUBLIC__/Open/js/jqPaginator/jqPaginator.min.js"></script>
+    <script src="__PUBLIC__/Open/js/detail.js"></script>
+</head>
+
+<body>
+	<div id="openclassDetail">
+	    <div class="top">
+	        <div class="container clearfix">
+	        	<a href="/open">
+	            	<img src="__PUBLIC__/Open/images/logo.svg" alt="" class="logo">
+	            </a>
+	            <div class="telPart">
+	                <img src="__PUBLIC__/Open/images/phone.png" alt="" class="phone">
+	                <p>客服咨询电话<br />4000-150-170</p>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="header">
+	        <div class="container">
+	            <img :src="classdata.t_img_url" alt="" class="pic">
+	            <div class="info">
+	            	<h3>{{classdata.names}}</h3>
+	            	<p class="line">
+	                    <span class="title">时间:</span>{{classdata.start_time}}
+	                </p>
+	                <p class="line">
+	                    <span class="title">讲师:</span>{{classdata.teacher}}
+	                </p>
+	                <p class="line">
+	                    <span class="title">时长:</span>{{classdata.timelength}}分钟
+	                </p>
+	                <p class="line">
+	                    <span class="title">学习人数:</span>{{classdata.studynum}}人
+	                </p>
+	            </div>
+	            <a target="_blank" :href="classdata.playback_addr" class="see">查看回放</a>
+	        </div>
+	    </div>
+	    <div class="main">
+	    	<div class="container clearfix">
+		    	<div class="left l_part">
+		    		<div class="tabDv">
+		    			<ul class="tabHeader clearfix">
+		    				<li class="active" data-flag="tab1">课程简介</li>
+		    				<li data-flag="tab2">上课方式</li>
+		    				<li data-flag="tab3">讲师介绍</li>
+		    				<!-- <li data-flag="tab4">课程表</li> -->
+		    			</ul>
+		    			<div class="tabcontent tab1 active" v-html="classdata.content"></div>
+		    			<div class="tabcontent tab2" v-html="classdata.classway"></div>
+		    			<div class="tabcontent tab3" v-html="classdata.teacherdes"></div>
+		    		</div>
+		    	</div>
+		    	<div class="right r_part">
+	    			<h3>推荐课程</h3>
+	    			<ul class="listUl">
+	    				<li class="item" v-for="n in reco">
+	    					<a class="titleline" :href="'/open/detail?id='+n.id">
+	    						<span class="border"></span><span v-html="n.names"></span>
+	    					</a>
+	    					<p class="des">学习课时:<font v-html="n.start_time"></font> + 时长:<font v-html="n.timelength"></font></p>
+	    					<div class="btnGroup">
+	    						<span class="tag">免费试听</span>
+	    						<span class="tag">学习人数：<font v-html="n.studynum"></font>人</span>
+	    					</div>
+	    				</li>
+	    			</ul>
+		    	</div>
+	    	</div>
+	    </div>
+	    <p class="footer">
+	        热线电话：0512-65684901<br />小莺教育科技有限公司 苏ICP备17069390号
+	    </p>
+    </div>
+</body>
+
+</html>
