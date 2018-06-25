@@ -1,6 +1,7 @@
 <?php
 namespace Open\Controller;
 
+use Common\Controller\BaseController;
 use Open\Model\LivecateModel;
 use Open\Model\LivecontentModel;
 use Open\Model\OpenclassModel;
@@ -114,6 +115,7 @@ class IndexController extends Controller
 
     public function snumIncre ()
     {
+        $base       =   new BaseController();
         try{
             (IS_POST && IS_AJAX) || E('非法请求');
             $id             =   I('post.id',false,'int');
