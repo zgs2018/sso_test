@@ -83,6 +83,7 @@
 	</body>
 	<script src="/Public/Mobile/js/jquery-3.1.1.min.js"></script>
 	<script src="/Public/Mobile/js/webuploader.js"></script>
+	<script src="/Public/Mobile/js/jquery.cookie.js"></script>
 	<script>
 		var setting = new Vue({
 			el: "#setting",
@@ -217,6 +218,7 @@
 						type: "post",
 						url: "/api/logout",
 						success: function(data) {
+							forget()
 							window.location.href = "/m/login"
 						}
 					});
@@ -262,6 +264,18 @@
 			});
 			uploader.on('uploadSuccess', function(file) {
 				setting.get_set()
+			});
+		}
+		
+				function forget() {
+			$.cookie("rmbUser", "false", {
+				expire: -1
+			});
+			$.cookie("username", "", {
+				expires: -1
+			});
+			$.cookie("password", "", {
+				expires: -1
 			});
 		}
 	</script>

@@ -15,6 +15,7 @@ body {
   width: 10rem;
   margin: 0 auto;
   overflow-x: hidden;
+  cursor: pointer;
 }
 
 .header {
