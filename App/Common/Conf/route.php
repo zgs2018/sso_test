@@ -11,7 +11,6 @@ return [
 
 
 
-
         // 定时任务
         'crontab/:type/[:time\d]'       =>  'Crontab/:1/index',
     ],
@@ -56,6 +55,11 @@ return [
         'm/material'			    =>	'Mobile/Index/material',//我的材料'
         'm/message'			        =>	'Mobile/Index/message',//消息列表
         'm/message/details'	        =>	'Mobile/Index/messageDetails',//消息详情
-        'm/set'	                    =>	'Mobile/Index/set'//个人信息
+        'm/set'	                    =>	'Mobile/Index/set',//个人信息
+
+
+        /* 公开课路由 */
+        'api/open'                  =>  'Open/Index/index',// 列表
+        'api/open/detail'           =>  'Open/Index/detail',// 详情
     ],
 ];
