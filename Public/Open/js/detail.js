@@ -37,6 +37,15 @@ $(function(){
                             }
                             res.info.t_img_url = res.crm_domain + res.info.t_img_url
                             _this.classdata = res.info;
+
+                            var _body = $(".tabcontent").width();
+                            _this.$nextTick(function(){
+                                $(".tabDv img").each(function(){
+                                    if ($(this).width() > _body) {
+                                        $(this).attr("width", "100%").attr("height", "auto");
+                                    }
+                                })
+                            })
                         }
                     }
                 })
