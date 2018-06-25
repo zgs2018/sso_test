@@ -41,6 +41,19 @@
 				$("#password").remove();
 				$(".pass").append("<input id='password' type='password'placeholder='请输入您的密码' class='txt2'/>");
 				$("#password").val($.cookie("password"));
+				
+				$.ajax({
+				type: "post",
+				data: {
+					username: $("#username").val(),
+					password: $("#password").val()
+				},
+				url: "/api/login",
+				success: function(data) {
+					window.location.href = "/m"
+				}
+				
+			});
 			}
 			
 			
@@ -77,9 +90,12 @@
 				},
 				url: "/api/login",
 				success: function(data) {
-					window.location.href = "/m"
+					if(data.result){
+						window.location.href = "/m"
+					}else{
+						alert(data.msg)
+					}
 				}
-				
 			});
 		})
 
