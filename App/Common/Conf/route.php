@@ -20,6 +20,7 @@ return [
         '/'                         =>  'Open/View/index',      // 主页 公开课
         'open'                      =>  'Open/View/index',      // 主页 公开课
         'open/detail'               =>  'Open/View/detail',     //详情
+
         'user'                      =>  'Home/Index/index',
         'test'                      =>  'Home/Index/test',
         'api/isLogin'               =>  'Home/Index/isLogin',
