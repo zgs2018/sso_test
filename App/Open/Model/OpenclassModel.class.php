@@ -16,24 +16,47 @@ class OpenclassModel    extends MxModel
             'foreign_key'       =>  'livecate',
             'condition'         =>  ''
         ],
+        'livecontent_info'  =>  [
+            'mapping_type'      =>  self::MANY_TO_MANY,
+            'class_name'        =>  'Livecontent',
+            'foreign_key'       =>  'p_id',
+            'relation_foreign_key'  =>  'c_id',
+            'relation_table'    =>  'mxcrm.mx_rpc', //此处应显式定义中间表名称，且不能使用C函数读取表前缀
+            'mapping_order'     =>  'id',
+            'mapping_limit'     =>  10,
+
+        ],
     ];
 
     public function lists ($where=null,$order=null,$limit)
     {
-        $_where         =   [];
         $_order         =   [];
-        if( !is_null($where) && is_array($where) )
-            $_where         =   array_merge( $where, $_where );
         if( !is_null($order) ){
             $_order         =   is_string($order)
                 ?   $order
                 :   implode(',', array_filter($order) );
         }
-        $builder            =   $this->field('playback_addr,content',true);
-        $_where && $builder->where( $_where );
+        $builder            =   $this->QueryBuilder( $where );
         $_order && $builder->order( $_order );
         $builder->page( $limit['page'] )->limit( $limit['limit'] );
         return $builder->select();
+    }
+
+    public function countNum ($where)
+    {
+        return (int)$this->QueryBuilder($where)->count();
+    }
+
+    protected function QueryBuilder ($where)
+    {
+        $_where         =   [];
+        if( !is_null($where) && is_array($where) )
+            $_where         =   array_merge( $where, $_where );
+        return $this->alias('pc')->field('pc.id,pc.img_url,pc.t_img_url,pc.names,pc.start_time,pc.teacher,pc.sign_addr,pc.timelength,pc.studynum,pc.from_p,pc.add_ts,pc.update_time,pc.classway,pc.teacherdes,pc.is_reco')
+            ->join("LEFT JOIN {$this->dbName}.__RPC__ rpc ON pc.id = rpc.p_id")
+            ->join("LEFT JOIN {$this->dbName}.__LIVECONTENT__ lc ON rpc.c_id = lc.id")
+            ->where($_where)
+            ->group('pc.id');
     }
 
     protected function _after_find(&$result, $options)
@@ -43,21 +66,5 @@ class OpenclassModel    extends MxModel
         $result['content']      =   htmlspecialchars_decode($result['content']);
         // 视频链接处理
         self::isAuth() || $result['playback_addr']='NEED_AUTH';
-        // 关联 内容分类
-        $as_fields              =   'id,cate_name,desc';
-        $result['livecontent_info']     =   $this->relation_livecontent($result['livecontent'], $as_fields );
-    }
-
-    protected function relation_livecontent ($content_ids, $fields, $order='id desc')
-    {
-        if( !$content_ids )
-            return [];
-        $content_ids                =   explode( ',', $content_ids );
-        $model                      =   new LivecontentModel();
-        $contents                   =   $model->field($fields)
-            ->where(['id'=>['IN',$content_ids]])
-            ->order($order)
-            ->select();
-        return $contents;
     }
 }

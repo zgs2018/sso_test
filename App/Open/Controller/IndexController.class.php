@@ -17,7 +17,7 @@ class IndexController extends Controller
             $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
             $result                 =   true;
             $_sql                   =   $model->_sql();
-            $count                  =   (int)$model->where($conditions['conditions'])->count();
+            $count                  =   $model->countNum($conditions['conditions']);
             $crm_domain             =   C('CRM_DOMAIN');
 
             $this->ajaxReturn( compact('result', 'conditions', 'lists', 'count', 'crm_domain', '_sql') );
@@ -51,11 +51,8 @@ class IndexController extends Controller
             $conditions['names']        =   ['LIKE',"%{$params[$search]}%"];
         // 内容类型
         if( key_exists($livecontent, $params) ){
-            $content_types              =   [];
-            foreach ($params[$livecontent] as $content){
-                $content_types[$content]        =  "FIND_IN_SET({$content},livecontent)";
-            }
-            $conditions['_string']      =   implode( ' AND ', $content_types );
+            $content_types              =   array_map( 'intval', array_filter( $params[$livecontent]) );
+            $conditions['lc.id']        =   ['in', $content_types];
         }
         // 排序
         if( key_exists($order_key, $params) )
@@ -82,8 +79,9 @@ class IndexController extends Controller
             $info           =   $model->relation(true)
                 ->field(true)
                 ->find($id);
-            $info || E('数据不存在');
-            $this->ajaxReturn( ['result'=>true,'info'=>$info,'crm_domain'=>C('CRM_DOMAIN')] );
+            dump($info);
+//            $info || E('数据不存在');
+//            $this->ajaxReturn( ['result'=>true,'info'=>$info,'crm_domain'=>C('CRM_DOMAIN')] );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  false,
