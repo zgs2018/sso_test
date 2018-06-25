@@ -14,7 +14,7 @@ class IndexController extends Controller
     {
         try{
             (IS_POST && IS_AJAX) || E('非法请求');
-            $params                 =   I('get.');
+            $params                 =   I('post.');
             $conditions             =   $this->conditionsHandle($params);
             $model                  =   new OpenclassModel();
             $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
