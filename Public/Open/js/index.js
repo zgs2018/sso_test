@@ -35,6 +35,9 @@ $(function() {
             },
             getData:function(){
                 var _this = this;
+                if (Object.keys(this.cate).length > 0) {
+                    delete this.request.init
+                }
                 $.ajax({
                     url:"/api/open",
                     type:"POST",
