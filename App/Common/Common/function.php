@@ -14,14 +14,14 @@ if( !function_exists('str2array') ){
     }
 }
 
-if( !function_exists('key_exists') ){
+if( !function_exists('exists_key') ){
     /**
      * @param $key
      * @param $array
      * @param int $mode 1.严谨模式 2.模糊模式
      * @return bool
      */
-    function key_exists ($key, $array, $mode=1)
+    function exists_key ($key, $array, $mode=1)
     {
         // 验证key合法度
         if( !is_array( $array ) )

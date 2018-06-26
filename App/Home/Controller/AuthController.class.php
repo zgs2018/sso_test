@@ -13,7 +13,6 @@ class AuthController extends Controller
     public function __construct()
     {
         parent::__construct();
-        IS_JSONP && $this->_origin();
         if(ACTION_NAME == 'logout') return ;
 
     }
@@ -106,44 +105,20 @@ class AuthController extends Controller
 
     protected function checkLoginParams ($params)
     {
-        return array_key_exists( 'username', $params )
-            && array_key_exists( 'password', $params )
+        return exists_key( 'username', $params )
+            && exists_key( 'password', $params )
             && $params['username']
             && $params['password'];
     }
 
     protected function checkResetParams ($params)
     {
-        return array_key_exists( 'oldpasswd', $params )
-            && array_key_exists( 'newpasswd', $params )
-            && array_key_exists( 'newpasswd2', $params )
+        return exists_key( 'oldpasswd', $params )
+            && exists_key( 'newpasswd', $params )
+            && exists_key( 'newpasswd2', $params )
             && $params['oldpasswd']
             && $params['newpasswd']
             && $params['newpasswd2']
             && ($params['newpasswd']===$params['newpasswd2']);
-    }
-
-    protected function _origin ()
-    {
-        // 请求来源
-        $http_origin                =   false;
-        if( array_key_exists( 'HTTP_ORIGIN', $_SERVER ) && $_SERVER['HTTP_ORIGIN'] ){
-            $http_origin        =   $_SERVER['HTTP_ORIGIN'];
-        }elseif( array_key_exists( 'HTTP_REFERER', $_SERVER ) && $_SERVER['HTTP_REFERER'] ){
-            $http_origin        =   $_SERVER['HTTP_REFERER'];
-        }
-        // 来源判断
-        if( $http_origin === false )    return ;
-        // 获取来源主域
-        preg_match("/^(?:http|https):\/\/([^\/]+)/", $http_origin, $matches);
-
-        if( !array_key_exists( 1, $matches ) )
-            return ;
-
-        header('Access-Control-Allow-Origin: '.$matches[0]);
-        header("Access-Control-Allow-Methods: POST, GET");
-        header('Access-Control-Allow-Headers:x-requested-with');
-        header("Access-Control-Allow-Credentials: true");
-        return;
     }
 }
