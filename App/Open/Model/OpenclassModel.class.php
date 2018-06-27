@@ -28,7 +28,7 @@ class OpenclassModel    extends MxModel
         ],
     ];
 
-    public function lists ($where=null,$having=null,$order=null,$limit=[])
+    public function lists ($where,$having,$order,$limit=[])
     {
         $_order         =   [];
         if( !is_null($order) ){
@@ -36,28 +36,30 @@ class OpenclassModel    extends MxModel
                 ?   $order
                 :   implode(',', array_filter($order) );
         }
-        $builder            =   $this->QueryBuilder( $where );
-        $builder->group('pc.id');
-        $having && $builder->having($having);
+        $builder            =   $this->QueryBuilder( $where, $having );
         $_order && $builder->order( $_order );
         $builder->page( $limit['page'] )->limit( $limit['limit'] );
         return $builder->select();
     }
 
-    public function countNum ($where)
+    public function countNum ($where,$having)
     {
-        return (int)$this->QueryBuilder($where)->count('distinct pc.id');
+        $subSql =  $this->QueryBuilder($where,$having)->buildSql();
+        return $this->table($subSql.' sub')->count();
     }
 
-    protected function QueryBuilder ($where)
+    protected function QueryBuilder ($where,$having=false)
     {
         $_where         =   [];
         if( !is_null($where) && is_array($where) )
             $_where         =   array_merge( $where, $_where );
-        return $this->alias('pc')->field('pc.id,pc.img_url,pc.t_img_url,pc.names,pc.start_time,pc.teacher,pc.sign_addr,pc.timelength,pc.studynum,pc.from_p,pc.add_ts,pc.update_time,pc.classway,pc.teacherdes,pc.is_reco')
+        $query = $this->alias('pc')->field('pc.id,pc.img_url,pc.t_img_url,pc.names,pc.start_time,pc.teacher,pc.sign_addr,pc.timelength,pc.studynum,pc.from_p,pc.add_ts,pc.update_time,pc.classway,pc.teacherdes,pc.is_reco')
             ->join("LEFT JOIN {$this->dbName}.__RPC__ rpc ON pc.id = rpc.p_id")
             ->join("LEFT JOIN {$this->dbName}.__LIVECONTENT__ lc ON rpc.c_id = lc.id")
-            ->where($_where);
+            ->where($_where)
+            ->group('pc.id');
+        return $having ? $query->having($having) : $query;
+
     }
 
     protected function _after_find(&$result, $options)

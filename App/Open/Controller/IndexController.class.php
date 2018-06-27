@@ -20,7 +20,9 @@ class IndexController extends Controller
             $lists                  =   $model->lists($conditions['conditions'],$conditions['having'],$conditions['order'],$conditions['limit']);
             $result                 =   true;
             $_sql                   =   $model->_sql();
-            $count                  =   $model->countNum($conditions['conditions']);
+            $count                  =   $model->countNum($conditions['conditions'],$conditions['having']);
+            $_sql                   =   $model->_sql();
+
             $crm_domain             =   C('CRM_DOMAIN');
 
             $_init                  =   [];
@@ -35,7 +37,17 @@ class IndexController extends Controller
                 '查询条件'      =>  'page:页码;limit:每页显示数量;livecate:直播分类;livecontent:直播内容(复合);is_reco:是否推荐;search:名称搜索;init:是否需要返回初始值(0.false,1.true)',
             ];
 
-            $this->ajaxReturn( compact('result', '_init', 'params', 'lists', 'count', 'crm_domain', 'remark', '_sql') );
+            $this->ajaxReturn( [
+                'result'            =>  $result,
+                '_init'             =>  $_init,
+                'params'            =>  $params,
+                'lists'             =>  $lists,
+                'count'             =>  $count,
+                'crm_domain'        =>  $crm_domain,
+//                'remark'            =>  $remark,
+                '_sql'              =>  $_sql,
+                'conditions'        =>  $conditions,
+            ] );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  true,
