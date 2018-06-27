@@ -18,6 +18,7 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
   font-family: "微软雅黑";
+  background: white;
 }
 
 .header {

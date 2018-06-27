@@ -52,8 +52,8 @@
 			</div>
 			<div class="footer">
 				<a href="javascript:;" onclick="_MEIQIA('showPanel')">在线咨询</a>
-				<a v-if="data.playback_addr =='NEED_AUTH'" href="/m/login">查看回放</a>
-				<a v-else :href="data.playback_addr">查看回放</a>
+				<a v-if="info.playback_addr =='NEED_AUTH'" href="/m/login">查看回放</a>
+				<a v-else :href="info.playback_addr">查看回放</a>
 			</div>
 		</div>
 	</body>

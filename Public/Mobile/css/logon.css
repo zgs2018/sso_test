@@ -18,6 +18,7 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
   font-family: "微软雅黑";
+  background: white;
 }
   input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
       background:none !important;
