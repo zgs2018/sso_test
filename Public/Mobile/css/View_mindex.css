@@ -190,7 +190,7 @@ color: #999999;
 ._swiper .class_list > li >a .item_img > img {
   width: 100%;
   margin-bottom: 0.266667rem;
-  min-height:2rem ;
+  height:2.3rem ;
 }
 
 ._swiper .class_list > li .item_title {
