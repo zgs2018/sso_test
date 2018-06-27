@@ -10,7 +10,8 @@ $(function() {
                 livecate:"",
                 livecontent:"",
                 page:"1",
-                init:1
+                init:1,
+                limit:12
             },
             livecontent:[]
         },
