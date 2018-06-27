@@ -2,8 +2,9 @@
 
 return array(
 	//'配置项'=>'配置值'
-    'SHOW_PAGE_TRACE' => env('SHOW_PAGE_TRACE',false),
-    'SITE_URL'        => env('SITE_URL'),
+    'APP_SWITCH'            =>  env('APP_SWITCH',false),
+    'SHOW_PAGE_TRACE'       =>  env('SHOW_PAGE_TRACE',false),
+    'SITE_URL'              =>  env('SITE_URL'),
 
     /* 应用设定 */
     'APP_USE_NAMESPACE'     =>  env('APP_USE_NAMESPACE',true),    // 应用类库是否使用命名空间
@@ -12,7 +13,7 @@ return array(
     'APP_DOMAIN_SUFFIX'     =>  env('APP_DOMAIN_SUFFIX',''), // 域名后缀 如果是com.cn net.cn 之类的后缀必须设置
     'ACTION_SUFFIX'         =>  env('ACTION_SUFFIX',''), // 操作方法后缀
     'MULTI_MODULE'          =>  env('MULTI_MODULE',false), // 是否允许多模块 如果为false 则必须设置 DEFAULT_MODULE
-    'MODULE_DENY_LIST'      =>  ['Common','Runtime'],
+    'MODULE_DENY_LIST'      =>  str2array( env('MODULE_DENY_LIST',['Common','Runtime']) ),
     'CONTROLLER_LEVEL'      =>  env('CONTROLLER_LEVEL',1),
     'APP_AUTOLOAD_LAYER'    =>  'Controller,Model', // 自动加载的应用类库层 关闭APP_USE_NAMESPACE后有效
     'APP_AUTOLOAD_PATH'     =>  '', // 自动加载的路径 关闭APP_USE_NAMESPACE后有效
@@ -55,10 +56,12 @@ return array(
 
     /* SESSION设置 */
     'SESSION_AUTO_START'    =>  env('SESSION_AUTO_START',true),    // 是否自动开启Session
-    'SESSION_OPTIONS'       =>  array(), // session 配置数组 支持type name id path expire domain 等参数
-    'SESSION_TYPE'          =>  env('SESSION_TYPE',''), // session hander类型 默认无需设置 除非扩展了session hander驱动
-    'SESSION_PREFIX'        =>  env('SESSION_PREFIX',''), // session 前缀
-    //'VAR_SESSION_ID'      =>  'session_id',     //sessionID的提交变量
+    'SESSION_OPTIONS'       =>  [
+        'name'      =>  env('SESSION_NAME','SID'),
+        'path'      =>  env('SESSION_PATH',''),
+        'expire'    =>  env('SESSION_EXPIRE',60*60),
+        'domain'    =>  env('SESSION_DOMAIN',''),
+    ], // session 配置数组 支持type name id path expire domain 等参数
 
     /* 模板引擎设置 */
     'TMPL_PATH'             =>  env('TMPL_PATH',null),
