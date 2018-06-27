@@ -133,7 +133,7 @@
 			</header>
 			<div class="title_name">
 				<div>
-					<span v-if="data.info.profile.headpic != null"><img :src="data.info.profile.headpic"/><span>{{data.info.profile.nickname}}</span></span>
+					<span v-if="data.info.profile.headpic != null"><img :src="['/'+data.info.profile.headpic]"/><span>{{data.info.profile.nickname}}</span></span>
 					<span v-else><img  src="/Public/Mobile/img/pic_img.png" /><span>{{data.info.profile.nickname}}</span></span>
 					
 					<a href="/m/set" class="fa fa-pencil-square-o fa-lg"></a>
