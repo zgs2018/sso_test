@@ -52,7 +52,6 @@
 						},
 						url: "/api/letter/list",
 						success: function(res) {
-//							_self.data = data.lists
 							for (var i = 0; i < res.lists.length; i++) {
 								if(res.lists[i].id == _id){
 									var datas = res.lists[i]

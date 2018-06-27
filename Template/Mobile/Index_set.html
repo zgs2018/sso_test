@@ -30,7 +30,13 @@
 			</header>
 			<div class="title_name">
 				<div id="uploader" class="wu-example">
-					<span><img class="header_img" v-if="data.info.profile" :src="['/'+data.info.profile.headpic]" /><span>{{data.info.profile.nickname}}</span></span>
+
+					
+					<span>
+						<img class="header_img" v-if="data.info.profile != null" :src="['/'+data.info.profile.headpic]" />
+						<img v-else src="/Public/Mobile/img/pic_img.png" />
+						<span>{{data.info.profile.nickname}}</span>
+					</span>
 					<a href="javascript:void(0)" class="fa fa-pencil-square-o fa-lg" id="picker"></a>
 					<!--<div id="uploader" class="wu-example">
 						<div id="thelist" class="uploader-list"></div>

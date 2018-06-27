@@ -14,10 +14,13 @@ i {
 }
 
 body {
+	width: 10rem;
+	margin:0 auto;
   font-family: "微软雅黑";
   font-size: 0.426667rem;
   color: #333333;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 
 .header {
@@ -88,6 +91,7 @@ color: #999999;
   margin-right: 0.4rem;
   position: relative;
   font-size: 0.426667rem;
+  cursor: pointer;
 }
 
 .content .con_tab > span > i {
@@ -161,11 +165,13 @@ color: #999999;
 ._swiper > div .swiper-container6 .swiper-slide {
   font-size: 0.426667rem;
   color: #333333;
+  cursor: pointer;
 }
 
 ._swiper .class_list {
   width: 100%;
   overflow: hidden;
+  min-height: 6.5rem;
 }
 
 ._swiper .class_list > li {
@@ -174,10 +180,17 @@ color: #999999;
   margin-top: 0.266667rem;
   float: left;
 }
-
-._swiper .class_list > li > img {
+._swiper .class_list > li >a{
+	display: inline-block;
+	width: 100%;
+}
+._swiper .class_list > li >a .item_img{
+	min-height:2.36rem;
+}
+._swiper .class_list > li >a .item_img > img {
   width: 100%;
   margin-bottom: 0.266667rem;
+  min-height:2rem ;
 }
 
 ._swiper .class_list > li .item_title {
