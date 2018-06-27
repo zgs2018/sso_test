@@ -21,7 +21,6 @@ class IndexController extends Controller
             $result                 =   true;
             $_sql                   =   $model->_sql();
             $count                  =   $model->countNum($conditions['conditions'],$conditions['having']);
-            $_sql                   =   $model->_sql();
 
             $crm_domain             =   C('CRM_DOMAIN');
 
@@ -46,7 +45,7 @@ class IndexController extends Controller
                 'crm_domain'        =>  $crm_domain,
 //                'remark'            =>  $remark,
                 '_sql'              =>  $_sql,
-                'conditions'        =>  $conditions,
+//                'conditions'        =>  $conditions,
             ] );
         }catch (Exception $e){
             $this->ajaxReturn([
