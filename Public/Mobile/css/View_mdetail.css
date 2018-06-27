@@ -12,7 +12,9 @@ li {
   text-decoration: none;
   list-style: none;
 }
-
+img{
+	border: none;
+}
 body {
   width: 10rem;
   margin: 0 auto;
@@ -61,11 +63,12 @@ body {
   width: 100%;
   position: relative;
   font-size: 0;
-  min-height:5.3rem ;
+  height:5.3rem ;
 }
 
 .video_box > img {
   width: 100%;
+  height: 100%;
 }
 
 .video_box > p {
@@ -189,7 +192,9 @@ body {
   font-size: 0.373333rem;
   color: #666666;
 }
-
+.de_content .content_text img{
+	width: 100%;
+}
 .de_content .content_text > div:nth-of-type(1) {
   display: block;
 }
