@@ -103,7 +103,7 @@
 							init: 1,
 							limit:6
 						},
-						url: "http://www.i.local/api/open",
+						url: "/api/open",
 						success: function(res) {
 							if(res.lists.length<6){
 								$(".spinner").text("没有更多了...")
@@ -127,7 +127,7 @@
 					var _self_p = this;
 					$.ajax({
 						type:"post",
-						url:"http://www.i.local/api/profile",
+						url:"/api/profile",
 						success:function(res){
 							_self_p.profile = res
 							if(res.info.profile.headpic != null && res.info.profile.headpic.toString()[0] =="."){
@@ -194,7 +194,7 @@
 									init: 1,
 									limit:6
 								},
-								url: "http://www.i.local/api/open",
+								url: "/api/open",
 								success: function(res) {
 									if(res.result) {
 										if(res.lists.length<6){
