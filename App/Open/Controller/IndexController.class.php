@@ -17,10 +17,11 @@ class IndexController extends Controller
             $params                 =   I('post.');
             $conditions             =   $this->conditionsHandle($params);
             $model                  =   new OpenclassModel();
-            $lists                  =   $model->lists($conditions['conditions'],$conditions['order'],$conditions['limit']);
+            $lists                  =   $model->lists($conditions['conditions'],$conditions['having'],$conditions['order'],$conditions['limit']);
             $result                 =   true;
             $_sql                   =   $model->_sql();
-            $count                  =   $model->countNum($conditions['conditions']);
+            $count                  =   $model->countNum($conditions['conditions'],$conditions['having']);
+
             $crm_domain             =   C('CRM_DOMAIN');
 
             $_init                  =   [];
@@ -35,7 +36,17 @@ class IndexController extends Controller
                 '查询条件'      =>  'page:页码;limit:每页显示数量;livecate:直播分类;livecontent:直播内容(复合);is_reco:是否推荐;search:名称搜索;init:是否需要返回初始值(0.false,1.true)',
             ];
 
-            $this->ajaxReturn( compact('result', '_init', 'params', 'lists', 'count', 'crm_domain', 'remark') );
+            $this->ajaxReturn( [
+                'result'            =>  $result,
+                '_init'             =>  $_init,
+                'params'            =>  $params,
+                'lists'             =>  $lists,
+                'count'             =>  $count,
+                'crm_domain'        =>  $crm_domain,
+//                'remark'            =>  $remark,
+                '_sql'              =>  $_sql,
+//                'conditions'        =>  $conditions,
+            ] );
         }catch (Exception $e){
             $this->ajaxReturn([
                 'result'        =>  true,
@@ -47,6 +58,7 @@ class IndexController extends Controller
     public function conditionsHandle ($params)
     {
         $conditions             =   [];
+        $having                 =   "";
         $order                  =   'id desc';
         $livecate               =   'livecate';
         $livecontent            =   'livecontent';
@@ -57,23 +69,24 @@ class IndexController extends Controller
         $order_key              =   'order';
         $init_key               =   'init';
         // 直播类型
-        if( key_exists($livecate,$params) && $params[$livecate] )
+        if( exists_key($livecate,$params) )
             $conditions[$livecate]      =   ['eq',(int)$params[$livecate]];
         // 是否推荐
-        if( key_exists($is_rec, $params) )
+        if( exists_key($is_rec, $params) )
             $conditions[$is_rec]        =   ['eq',(int)$params[$is_rec]];
         // 名称
-        if( key_exists($search, $params) && $params[$search] )
+        if( exists_key($search, $params) )
             $conditions['names']        =   ['LIKE',"%{$params[$search]}%"];
         // 内容类型
-        if( key_exists($livecontent, $params) && ($content_types = array_map( 'intval', array_filter( $params[$livecontent]) ?: [] )) ){
+        if( exists_key($livecontent, $params) && ($content_types = array_map( 'intval', array_filter( $params[$livecontent]) ?: [] )) ){
             $conditions['lc.id']        =   ['in', $content_types];
+            $having                     =   'count(pc.id)>='.count($content_types);
         }
         // 排序
-        if( key_exists($order_key, $params) && $params[$order_key] )
+        if( exists_key($order_key, $params) )
             $order                      =   $params[$order_key];
         // 页数
-        $page                           =   key_exists($page_key, $params)
+        $page                           =   exists_key($page_key, $params)
             ?   (int)$params[$page_key]
             :   1;
         // 条目数  最多一次显示100条
@@ -81,7 +94,7 @@ class IndexController extends Controller
             ?   20
             :   ($params[$limit_key]>100 ? 100 : (int)$params[$limit_key]);
         // 是否初始化
-        $init                          =   key_exists($init_key,$params) && ($params[$init_key]==1)
+        $init                          =   exists_key($init_key,$params) && ($params[$init_key]==1)
             ?   true
             :   false;
 
@@ -90,6 +103,7 @@ class IndexController extends Controller
             'order'             =>  $order,
             'limit'             =>  compact('page','limit'),
             'init'              =>  $init,
+            'having'            =>  $having,
         ];
     }
 

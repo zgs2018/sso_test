@@ -10,7 +10,8 @@ $(function() {
                 livecate:"",
                 livecontent:"",
                 page:"1",
-                init:1
+                init:1,
+                limit:12
             },
             livecontent:[]
         },
@@ -27,7 +28,7 @@ $(function() {
                     if (_val == '') {
                         this.livecontent = []
                     }
-                    _val = this.livecontent.join(',');
+                    _val = this.livecontent;
                 }
                 this.classdata = [];
                 this.request[_flag] = _val;
@@ -35,6 +36,9 @@ $(function() {
             },
             getData:function(){
                 var _this = this;
+                if (Object.keys(this.cate).length > 0) {
+                    delete this.request.init
+                }
                 $.ajax({
                     url:"/api/open",
                     type:"POST",
