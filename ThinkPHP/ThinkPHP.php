@@ -28,11 +28,13 @@ const URL_PATHINFO      =   1;  //PATHINFO模式
 const URL_REWRITE       =   2;  //REWRITE模式
 const URL_COMPAT        =   3;  // 兼容模式
 
-// 类文件后缀
-const EXT               =   '.class.php';
-
 // 环境变量重写
 include_once './ThinkPHP/Conf/env.php';
+
+// 类文件后缀
+const EXT               =   '.class.php';
+// 自定义类文件后缀
+defined('C_EXT')        or define('C_EXT',env('CLASS_EXT','.class.php'));
 
 // 系统常量定义
 defined('THINK_PATH')   or define('THINK_PATH',     __DIR__.'/');
