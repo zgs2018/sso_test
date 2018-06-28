@@ -9,7 +9,7 @@ class IndexController extends Controller
     {
         dump(C('SESSION_OPTIONS'));
         dump(session_id());
-        dump( cookie() );
+        dump( $_SERVER );
     }
 
 }
