@@ -1,11 +1,11 @@
 <?php
-namespace Common\Service\Remote;
+namespace Common\Service\SMS;
 
 use Common\Service\Service;
 
-class Remote extends Service
+class SMS extends Service
 {
-    protected static $name        =   'Soap';
+    protected static $name         =   'Bao';
 
     public static function name($name=false)
     {

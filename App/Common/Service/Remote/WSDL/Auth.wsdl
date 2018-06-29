@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+<definitions name="Auth" targetNamespace="urn:Auth" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:Auth" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<types xmlns="http://schemas.xmlsoap.org/wsdl/" />
+<portType name="AuthPort">
+    <operation name="index">
+        <input message="tns:indexRequest" />
+        <output message="tns:indexResponse" />
+    </operation>
+    <operation name="__set">
+        <input message="tns:__setRequest" />
+        <output message="tns:__setResponse" />
+    </operation>
+    <operation name="get">
+        <input message="tns:getRequest" />
+        <output message="tns:getResponse" />
+    </operation>
+    <operation name="__get">
+        <input message="tns:__getRequest" />
+        <output message="tns:__getResponse" />
+    </operation>
+    <operation name="__isset">
+        <input message="tns:__issetRequest" />
+        <output message="tns:__issetResponse" />
+    </operation>
+    <operation name="__call">
+        <input message="tns:__callRequest" />
+        <output message="tns:__callResponse" />
+    </operation>
+    <operation name="__destruct">
+        <input message="tns:__destructRequest" />
+        <output message="tns:__destructResponse" />
+    </operation>
+    <operation name="response">
+        <input message="tns:responseRequest" />
+        <output message="tns:responseResponse" />
+    </operation>
+</portType>
+<binding name="AuthBinding" type="tns:AuthPort">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+<operation name="index">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#index" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="__set">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#__set" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#get" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="__get">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#__get" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="__isset">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#__isset" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="__call">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#__call" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="__destruct">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#__destruct" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="response">
+<soap:operation soapAction="urn:Auth#Home\Controller\AuthController#response" />
+<input><soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Auth" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+</binding>
+<service name="Auth">
+<documentation />
+<port name="AuthPort" binding="tns:AuthBinding"><soap:address location="http://www.tp3.self:80/index.php" />
+</port>
+</service>
+<message name="indexRequest">
+</message>
+<message name="indexResponse">
+<part name="index" type="xsd:string" />
+</message>
+<message name="__setRequest">
+<part name="name" type="xsd:string" />
+<part name="value" type="xsd:string" />
+</message>
+<message name="__setResponse">
+<part name="__set" type="xsd:string" />
+</message>
+<message name="getRequest">
+<part name="name" type="xsd:string" />
+</message>
+<message name="getResponse">
+<part name="get" type="xsd:string" />
+</message>
+<message name="__getRequest">
+<part name="name" type="xsd:string" />
+</message>
+<message name="__getResponse">
+<part name="__get" type="xsd:string" />
+</message>
+<message name="__issetRequest">
+<part name="name" type="xsd:string" />
+</message>
+<message name="__issetResponse">
+<part name="__isset" type="xsd:string" />
+</message>
+<message name="__callRequest">
+<part name="method" type="xsd:string" />
+<part name="args" type="xsd:string" />
+</message>
+<message name="__callResponse">
+<part name="__call" type="xsd:string" />
+</message>
+<message name="__destructRequest">
+</message>
+<message name="__destructResponse">
+<part name="__destruct" type="xsd:string" />
+</message>
+<message name="responseRequest">
+<part name="data" type="xsd:string" />
+<part name="url" type="xsd:string" />
+<part name="seconds" type="xsd:string" />
+</message>
+<message name="responseResponse">
+<part name="response" type="xsd:string" />
+</message>
+</definitions>
