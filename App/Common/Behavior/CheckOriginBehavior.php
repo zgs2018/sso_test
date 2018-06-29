@@ -12,13 +12,18 @@ class CheckOriginBehavior extends Behavior
         $http_origin                =   false;
         if( exists_key( 'HTTP_ORIGIN', $_SERVER ) ){
             $http_origin        =   $_SERVER['HTTP_ORIGIN'];
+        }elseif( exists_key( 'HTTP_REFERER', $_SERVER ) ){
+            $http_origin        =   $_SERVER['HTTP_REFERER'];
+        }else{
+            self::termination( '' );
+            return ;
         }
         // 来源判断
         if( $http_origin === false )    return ;
 
         if( static::checkOrigin($http_origin,C('ALLOW_ORIGIN')) ){
             static::allowOrigin($http_origin);
-            Log::write( $http_origin, Log::INFO, '', 'Origin' );
+            Log::write( $http_origin, Log::INFO, '' );
             return ;
         } else{
             static::termination($http_origin,true);

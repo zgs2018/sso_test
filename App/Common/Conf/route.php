@@ -17,9 +17,6 @@ return [
 
 
     'URL_MAP_RULES'         =>  [
-        'curl/post'                 =>  'Home/Index/post',
-        'curl/get'                  =>  'Home/Index/get',
-
-        'soap/server'               =>  'Home/Index/server',
+        'login'         =>  'Auth/Index/login',
     ],
 ];

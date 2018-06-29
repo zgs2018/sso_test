@@ -3,8 +3,11 @@
 return array(
 	//'配置项'=>'配置值'
     'APP_SWITCH'            =>  env('APP_SWITCH',false),
+    'APP_NAME'              =>  env('APP_NAME',''),
     'SHOW_PAGE_TRACE'       =>  env('SHOW_PAGE_TRACE',false),
     'SITE_URL'              =>  env('SITE_URL'),
+
+    'ALLOW_ORIGIN'          =>  str2array( env('ALLOW_ORIGIN') ),
 
     /* 应用设定 */
     'APP_USE_NAMESPACE'     =>  env('APP_USE_NAMESPACE',true),    // 应用类库是否使用命名空间
