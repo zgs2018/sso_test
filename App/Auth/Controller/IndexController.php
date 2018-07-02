@@ -1,9 +1,15 @@
 <?php
 namespace Auth\Controller;
 use Think\Controller;
+use Think\Hook;
 
 class IndexController extends Controller
 {
+    public function _initialize ()
+    {
+        Hook::listen( 'authorized_interceptor' );
+    }
+
     public function index ()
     {
         $this->display();
@@ -11,8 +17,6 @@ class IndexController extends Controller
 
     public function login ()
     {
-        dump( I() );
-        exit;
         $this->display();
     }
 }

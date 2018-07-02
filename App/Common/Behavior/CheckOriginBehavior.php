@@ -23,7 +23,7 @@ class CheckOriginBehavior extends Behavior
 
         if( static::checkOrigin($http_origin,C('ALLOW_ORIGIN')) ){
             static::allowOrigin($http_origin);
-            Log::write( $http_origin, Log::INFO, '' );
+            Log::write( $http_origin, Log::NOTICE, '', LOG_PATH . 'Origin/' );
             return ;
         } else{
             static::termination($http_origin,true);

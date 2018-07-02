@@ -56,6 +56,7 @@ return array(
     'LOG_LEVEL'             =>  env('LOG_LEVEL','EMERG,ALERT,CRIT,ERR'),// 允许记录的日志级别
     'LOG_FILE_SIZE'         =>  env('LOG_FILE_SIZE',2097152),	// 日志文件大小限制
     'LOG_EXCEPTION_RECORD'  =>  env('LOG_EXCEPTION_RECORD',false),    // 是否记录异常信息日志
+    'LOG_PATH'              =>  env('LOG_PATH',''),
 
     /* SESSION设置 */
     'SESSION_AUTO_START'    =>  env('SESSION_AUTO_START',true),    // 是否自动开启Session
